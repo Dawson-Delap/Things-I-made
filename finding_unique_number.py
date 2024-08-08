@@ -9,4 +9,3 @@ def find_uniq(arr):
                 return arr[y]
         else:
                 return arr[y]
-            
