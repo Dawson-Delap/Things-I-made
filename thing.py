@@ -7,6 +7,7 @@ while t > 0:
         # Create the main application window
         window = tk.Tk()
         window.title(title)
+
         
         # Create a label with the word "BANANA" in yellow text
         label = tk.Label(window, text="BANANA", font=("Arial", 50), fg="yellow")
