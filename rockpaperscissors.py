@@ -43,22 +43,22 @@ rock paper or scissors:
     win = 0
     if play == "rock" and plays == "scissors":
         win = 1
-        print("You win!")
+        print("Player 1 wins!")
     if play == "paper" and plays == "rock":
         win = 1
-        print("You win!")
+        print("Player 1 wins!")
     if play == "scissors" and plays == "paper":
         win = 1
-        print("You win!")
+        print("Player 1 wins!")
     if plays == "rock" and play == "scissors":
         win = 1
-        print("Bot wins ;(")
+        print("Player 2 wins!")
     if plays == "paper" and play == "rock":
         win = 1
-        print("Bot wins ;(")
+        print("Player 2 wins!")
     if plays == "scissors" and play == "paper":
         win = 1
-        print("Bot wins ;(")
+        print("Player 2 wins!")
 
         if play == plays:
             print("Tied!")
