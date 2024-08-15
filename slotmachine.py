@@ -1,21 +1,31 @@
 from tkinter import *
 import random
 import emoji
+import time
 ran = 0
 rancolor = 0
 moneynum = 0
 def slots(Event=None):
     global moneynum
     moneynum -= 10
-    rand()
-    slot1["text"] = ran
-    slot1["bg"] = rancolor
-    rand()
-    slot2["text"] = ran
-    slot2["bg"] = rancolor
-    rand()
-    slot3["text"] = ran
-    slot3["bg"] = rancolor
+    for i in range(0,10):
+        rand()
+        slot1["text"] = ran
+        slot1["bg"] = rancolor
+        window.update()
+        time.sleep(.1)
+    for i in range(0,10):
+        rand()
+        slot2["text"] = ran
+        slot2["bg"] = rancolor
+        window.update()
+        time.sleep(.1)
+    for i in range(0,10):
+        rand()
+        slot3["text"] = ran
+        slot3["bg"] = rancolor
+        window.update()
+        time.sleep(.1)
     if slot1["text"] == slot2["text"] and slot2["text"] == slot3["text"]:
         if slot1["text"] != 7:
             moneynum += 1000
