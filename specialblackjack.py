@@ -157,6 +157,8 @@ def resta():
     winer = 0
     loser = 0
     windows()
+
+    
 def deals():
     global numplay
     global cards
