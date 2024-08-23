@@ -270,7 +270,7 @@ def deal(Event=None):
             stop = 1 
             lose = Tk()
             lose.config(bg="darkgreen")
-            wol = Label(lose, text="YOU WIN!", font=("Arial", 75))
+            wol = Label(lose, text="YOU WIN!", font=("Arial", 75), bg="darkgreen", fg="white")
             wol.grid(row=0, column=0)
             restart = Button(lose, text="Restart?", font=("Arial", 25), bg="gold", command=lambda: start())
             restart.grid(row=1, column=0)
@@ -279,7 +279,7 @@ def deal(Event=None):
             stop = 1
             lose = Tk()
             lose.config(bg="darkgreen")
-            wol = Label(lose, text="TIED!", font=("Arial", 75))
+            wol = Label(lose, text="TIED!", font=("Arial", 75), bg="darkgreen", fg="white")
             wol.grid(row=0, column=0)
             restart = Button(lose, text="Restart?", font=("Arial", 25), bg="gold", command=lambda: start())
             restart.grid(row=1, column=0)
