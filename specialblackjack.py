@@ -131,6 +131,7 @@ winer = 0
 loser = 0
 def resta():
     window.destroy()
+    lose.destroy()
     global numplay
     global cards
     global deal
@@ -156,6 +157,64 @@ def resta():
     dealcol = 3
     winer = 0
     loser = 0
+    cards = {
+        #clubs
+         '2♣':2,
+         '3♣':3,
+         '4♣':4,
+         '5♣':5,
+         '6♣':6,
+         '7♣':7,
+         '8♣':8,
+         '9♣':9,
+         '10♣':10,
+         'J♣':10,
+         'Q♣':10,
+         'K♣':10,
+         'A♣':11,
+        #spades
+         '2♠':2,
+         '3♠': 3,
+         '4♠': 4,
+         '5♠': 5,
+         '6♠': 6,
+         '7♠': 7,
+         '8♠': 8,
+         '9♠': 9,
+         '10♠': 10,
+         'J♠': 10,
+         'Q♠': 10,
+         'K♠': 10,
+         'A♠': 11,
+        #diamonds
+         '2♦': 2,
+         '3♦': 3,
+         '4♦': 4,
+         '5♦': 5,
+         '6♦': 6,
+         '7♦': 7,
+         '8♦': 8,
+         '9♦': 9,
+         '10♦': 10,
+         'J♦': 10,
+         'Q♦': 10,
+         'K♦': 10,
+         'A♦': 11,
+        #hearts
+         '2♥': 2,
+         '3♥': 3,
+         '4♥': 4,
+         '5♥': 5,
+         '6♥': 6,
+         '7♥': 7,
+         '8♥': 8,
+         '9♥': 9,
+         '10♥': 10,
+         'J♥': 10,
+         'Q♥': 10,
+         'K♥': 10,
+         'A♥': 11,
+        } 
     windows()
 
     
@@ -232,7 +291,15 @@ def another():
     cards.pop(another1)
     win()
 
-
+def losewin():
+    global lose
+    lose = Tk()
+    lose.config(bg="darkgreen")
+    w = Label(lose, text= "YOU LOST EVERYTHING", font=("Arial", 100), bg= "darkgreen", fg="gold")
+    w.grid(row=0, column=0)
+    restart = Button(lose, text="Restart", font=("Arial", 25), bg="gold", command=lambda:  resta())
+    restart.grid(row=1, column=0)
+    lose.mainloop()
 
 def win():
     global loser
@@ -242,26 +309,14 @@ def win():
     if numdeal > 21:
         winer = 1
     if loser == 1:
-        lose = Tk()
-        l = Label(lose, text= "YOU LOST YOUR KIDS AND WIFE", font=("Arial", 75))
-        l.pack()
-        lose.mainloop()
+        losewin()
     if winer == 1:
-        wine = Tk()
-        w = Label(wine, text= "YOU WON :)", font=("Arial", 100))
-        w.pack()
-        wine.mainloop()
+        losewin()
 def passwin():
     if numdeal > numplay:
-        lose = Tk()
-        l = Label(lose, text= "YOU LOST YOUR KIDS AND WIFE", font=("Arial", 75))
-        l.pack()
-        lose.mainloop()
+        losewin()
     if numplay > numdeal:
-        wine = Tk()
-        w = Label(wine, text= "YOU WON :)", font=("Arial", 100))
-        w.pack()
-        wine.mainloop()
+        losewin()
 
 
 def windows():
@@ -286,8 +341,7 @@ def windows():
     playnum.grid(row=1, column=0)
     dealnum = Button(window, text="0", font=("Arial", 25), bg="gold")
     dealnum.grid(row=0, column=0)
-    restart = Button(window, text="Restart", font=("Arial", 25), bg="gold", command=lambda:  resta())
-    restart.grid(row=3, column=1)
+    
     window.mainloop()
 
 windows()
