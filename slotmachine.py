@@ -2,6 +2,7 @@ from tkinter import *
 import random
 import emoji
 import time
+#type: pip install emoji if there is an error
 ran = 0
 rancolor = 0
 moneynum = 0

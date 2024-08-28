@@ -2,13 +2,13 @@ from tkinter import *
 import random
 import time
 opt = {
-        "$1":1,
+        "-$1":-1,
         "$10":10,
-        "$100":100,
+        "-$100":-100,
         "$1000":1000,
-        "$10000":10000,
+        "-$10000":-10000,
         "$100000":100000,
-        "$1000000":1000000,
+        "-$1000000":-1000000,
         "$10000000":10000000,
     }
 moneys = 0
@@ -72,19 +72,19 @@ def work():
     moneys += winmon
     money["text"] = "Money: $" + str(moneys)
 window = Tk()
-spot1 =  Button(window, text = "$1", font=("Arial", 25), height=4, width=8, bg ="red")
+spot1 =  Button(window, text = "-$1", font=("Arial", 25), height=4, width=8, bg ="red")
 spot1.grid(row=0, column=0)
 spot2 =  Button(window, text = "$10", font=("Arial", 25), height=4, width=8, bg ="orange")
 spot2.grid(row=0, column=1)
-spot3 =  Button(window, text = "$100", font=("Arial", 25), height=4, width=8, bg ="gold")
+spot3 =  Button(window, text = "-$100", font=("Arial", 25), height=4, width=8, bg ="gold")
 spot3.grid(row=0, column=2)
 spot4 =  Button(window, text = "$1000", font=("Arial", 25), height=4, width=8, bg ="yellow")
 spot4.grid(row=1, column=2)
-spot5 =  Button(window, text = "$10000", font=("Arial", 25), height=4, width=8, bg ="green")
+spot5 =  Button(window, text = "-$10000", font=("Arial", 25), height=4, width=8, bg ="green")
 spot5.grid(row=2, column=2)
 spot6 =  Button(window, text = "$100000", font=("Arial", 25), height=4, width=8, bg ="aquamarine")
 spot6.grid(row=2, column=1)
-spot7 =  Button(window, text = "$1000000", font=("Arial", 25), height=4, width=8, bg="blue")
+spot7 =  Button(window, text = "-$1000000", font=("Arial", 25), height=4, width=8, bg="blue")
 spot7.grid(row=2, column=0)
 spot8 =  Button(window, text = "$10000000", font=("Arial", 25), height=4, width=8, bg="magenta")
 spot8.grid(row=1, column=0)
