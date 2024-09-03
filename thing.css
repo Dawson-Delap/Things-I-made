@@ -1,3 +1,15 @@
-h1 {
+h1{
 font-family: Arial;
+color:white;
+text-align: center;
+}
+.image-hover{
+width:300px;
+height:300px;
+margin-left: 800px;
+background-image:url('https://media.tenor.com/9PTGVf4BLwYAAAAe/crying-emoji-dies.png');
+background-size:cover;
+}
+.image-hover:hover{
+background-image:url('https://media.tenor.com/9PTGVf4BLwYAAAAM/crying-emoji-dies.gif');
 }
