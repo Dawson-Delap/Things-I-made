@@ -13,3 +13,9 @@ background-size:cover;
 .image-hover:hover{
 background-image:url('https://media.tenor.com/9PTGVf4BLwYAAAAM/crying-emoji-dies.gif');
 }
+table, th, td {
+    border: 1px solid grey;
+  }
+tr:nth-child(even) {
+    background-color: green;
+  }
