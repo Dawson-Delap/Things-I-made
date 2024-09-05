@@ -1,21 +1,21 @@
 h1{
-font-family: Arial;
-color:white;
-text-align: center;
-}
-.image-hover{
-width:300px;
-height:300px;
-margin:auto;
-background-image:url('https://media.tenor.com/9PTGVf4BLwYAAAAe/crying-emoji-dies.png');
-background-size:cover;
-}
-.image-hover:hover{
-background-image:url('https://media.tenor.com/9PTGVf4BLwYAAAAM/crying-emoji-dies.gif');
-}
-table, th, td {
-    border: 1px solid grey;
+  font-family: Arial;
+  color:white;
+  text-align: center;
   }
-tr:nth-child(even) {
-    background-color: green;
+  .image-hover{
+  width:300px;
+  height:300px;
+  margin:auto;
+  background-image:url('https://media.tenor.com/9PTGVf4BLwYAAAAe/crying-emoji-dies.png');
+  background-size:cover;
+  }
+  .image-hover:hover{
+  background-image:url('https://media.tenor.com/9PTGVf4BLwYAAAAM/crying-emoji-dies.gif');
+  }
+  table, th, td {
+      border: 1px solid grey;
+  }
+  tr:nth-child(even) {
+      background-color: green;
   }
