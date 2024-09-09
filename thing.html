@@ -6,6 +6,17 @@
         <link rel="icon" type="image/x-icon" href="https://bluemoji.io/cdn-proxy/646218c67da47160c64a84d5/66b3e2b30608f3f68caf31d3_94.png">
         <title>just click the button</title>
         <meta name="keywords" content="yup this is it">
+        <script>
+            var num = 0;
+            function add1(){
+                num += 1;
+                document.getElementById("what").innerHTML = num;
+            }
+            function add100(){
+                num +=100;
+                document.getElementById("what").innerHTML = num;
+            }
+        </script>
     </head>
     <!--STOP INSPECTING
     STOP INSPECTING
@@ -19,8 +30,11 @@
         <h1 style="background-image: linear-gradient(to right,black, grey); border-radius: 10px;">CLICK IT</h1>
         <h1>|</h1>
         <h1>V</h1>
+        <h1 id="what">what</h1>
+        <button onclick="add1()">Click here</button>
         <br>
         <div style="border-radius: 1000px; cursor: wait; border-color: grey; border-style: solid; border-width: 20px;" onclick="alert('WHAT A LAME-O LOSER HAHAHAHAHAHAHAHAHAHAHAHAHAH')" class="image-hover"></div>
+        <button onclick="add100()"></button>
         <picture>
             <source media="(min-width: 650px)" srcset="https://bluemoji.io/cdn-proxy/646218c67da47160c64a84d5/66b3e5fbd9bbb8343a2928d0_82.png">
             <img style="border-radius: 10px 10px 10px 10px; cursor: wait; border-color: grey; border-style: solid; border-width: 20px; width:300px; height:300px; background-image: linear-gradient(white, black);" src="https://bluemoji.io/cdn-proxy/646218c67da47160c64a84d5/66b3e688ccde70cabd67e8ec_68.png" alt="yup">
