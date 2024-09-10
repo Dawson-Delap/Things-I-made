@@ -52,12 +52,15 @@
 <div id="center">
 <h1 id="showauto">Autoclickers = 0</h1>
 <h1 id="showgrandma">Grandmas = 0</h1>
+<h1 id="showbake">Bakeries = 0</h1>
 </div>
 <!--Shop-->
 <div id="right" style="float: right;">
     <button onclick="autoclickbuy()" id="autobuy">Auto 20</button>
     <br>
-    <button onclick="grandmabuy()" id="grandmabuy" class="notbuyable">Grandma 50</button>
+    <button onclick="grandmabuy()" id="grandmabuy">Grandma 50</button>
+    <br>
+    <button onclick="bakebuy()" id="bakebuy">Bakery 400</button>
     <script>
 //Autoclicker
         var cookies = 0;
@@ -97,6 +100,20 @@
             const button = document.getElementById("grandmabuy");
             button.style.backgroundColor = "grey";
         }
+        if (cookies >= clickcost){
+            const button = document.getElementById("clickbuy");
+            button.style.backgroundColor = "green";
+        } else {
+            const button = document.getElementById("clickbuy");
+            button.style.backgroundColor = "grey";
+        }
+        if (cookies >= bakecost){
+            const button = document.getElementById("bakebuy");
+            button.style.backgroundColor = "green";
+        } else {
+            const button = document.getElementById("bakebuy");
+            button.style.backgroundColor = "grey";
+        }
     }
         
 //Grandmas
@@ -116,6 +133,26 @@
         }
         function grandma(){
             cookies += grandmaown;
+            changeColor()
+            document.getElementById("cookienum").innerHTML = cookies;
+        }
+//Bakeries
+        var bakeown = 0;
+        var bakecost = 400;
+        const bakeID = setInterval(bake, 250);
+        function bakebuy(){
+            if (cookies >= bakecost) {
+                bakeown +=1;
+                cookies -= bakecost;
+                changeColor()
+                bakecost += 50;
+                document.getElementById("bakebuy").innerHTML = "Bakeries = " + bakecost;
+                document.getElementById("cookienum").innerHTML = cookies;
+                document.getElementById("showbake").innerHTML = "Bakeries = " + bakeown;
+            }
+        }
+        function bake(){
+            cookies += bakeown*2;
             changeColor()
             document.getElementById("cookienum").innerHTML = cookies;
         }
