@@ -8,32 +8,56 @@
             color:white;
             font-family: Arial, Helvetica, sans-serif;
         }
+        button{
+            opacity:50;
+            width:200px;
+            height:80px;
+            font-size:100%;
+        }
+        .buyable{
+            background-color: green;
+        }
     </style>
 </head>
 <body style="text-align: center; background-color: rgb(87, 56, 11);"></body>
 <!--cookie click-->
 <div id="left" style="float: left; border-right-width: 20px; border-right-color: white;">
+    <h1 id="showclick">Cookies per Click = 1</h1>
     <img onclick="addcook()" style="margin: auto;" src="https://cdn.stape.io/i/64522dbc0f09c249991043.png" >
     <h1 id="cookienum">0</h1>
+    <button id="clickbuy" onclick="addmoreclick()">More cookies per click=100</button>
     <script>
         var cookies = 0;
-        var cookperclick = 1;
         function addcook(){
-            cookies += cookperclick;
+            cookies += clickown;
+            changeColor();
             document.getElementById("cookienum").innerHTML=cookies;
+        }
+    //cookperclick
+        var clickown = 1;
+        var clickcost = 100;
+        function addmoreclick(){
+            if (cookies >= clickcost){
+                clickown +=1;
+                cookies -= clickcost;
+                clickcost += 100;
+                document.getElementById("clickbuy").innerHTML = "More Cookies per click = " + clickcost;
+                document.getElementById("cookienum").innerHTML = cookies;
+                document.getElementById("showclick").innerHTML = "Cookies per click = " + clickown;
+            }
         }
     </script>
 </div>
 <!--Upgrade show-->
 <div id="center">
-<h1 id="showauto">Autolickers = 0</h1>
+<h1 id="showauto">Autoclickers = 0</h1>
 <h1 id="showgrandma">Grandmas = 0</h1>
 </div>
 <!--Shop-->
 <div id="right" style="float: right;">
     <button onclick="autoclickbuy()" id="autobuy">Auto 20</button>
     <br>
-    <button onclick="grandmabuy()" id="grandmabuy">Grandma 50</button>
+    <button onclick="grandmabuy()" id="grandmabuy" class="notbuyable">Grandma 50</button>
     <script>
 //Autoclicker
         var cookies = 0;
@@ -45,26 +69,45 @@
             if (cookies >= autocost) {
                 autoown += 1;
                 cookies -= autocost;
+                changeColor()
                 autocost += 20;
                 document.getElementById("autobuy").innerHTML = "Autoclicker = " + autocost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showauto").innerHTML = "Autoclickers = " + autoown;
             }
         }
-    
         function autoclick() {
             cookies += autoown;
+            changeColor()
             document.getElementById("cookienum").innerHTML = cookies;
         }
+//change button colors
+    function changeColor() {
+        if (cookies >= autocost){
+            const button = document.getElementById("autobuy");
+            button.style.backgroundColor = "green";
+        } else {
+            const button = document.getElementById("autobuy");
+            button.style.backgroundColor = "grey";
+        }
+        if (cookies >= grandmacost){
+            const button = document.getElementById("grandmabuy");
+            button.style.backgroundColor = "green";
+        } else {
+            const button = document.getElementById("grandmabuy");
+            button.style.backgroundColor = "grey";
+        }
+    }
+        
 //Grandmas
         var grandmaown = 0;
         var grandmacost = 50;
         const grandmaID = setInterval(grandma, 500);
-
         function grandmabuy(){
             if (cookies >= grandmacost) {
                 grandmaown +=1;
                 cookies -= grandmacost;
+                changeColor()
                 grandmacost += 50;
                 document.getElementById("grandmabuy").innerHTML = "Grandma = " + grandmacost;
                 document.getElementById("cookienum").innerHTML = cookies;
@@ -73,20 +116,8 @@
         }
         function grandma(){
             cookies += grandmaown;
+            changeColor()
             document.getElementById("cookienum").innerHTML = cookies;
-        }
-//cookperclick
-        var clickown = 0;
-        var clickcost = 200;
-        function addmoreclick(){
-            if (cookies >= clickcost){
-                clickown +=1;
-                cookies -= clickcost;
-                clickcost *= 2;
-                document.getElementById("clickbuy").innerHTML = "Cookies per click = " + clickcost;
-                document.getElementById("cookienum").innerHTML = cookies;
-                document.getElementById("showclick").innerHTML = "Cookies per click = " + clickown;
-            }
         }
     </script>
 </div>
