@@ -1,6 +1,7 @@
 from tkinter import *
 import random
 import time
+
 opt = {
         "-$1":-1,
         "$10":10,
