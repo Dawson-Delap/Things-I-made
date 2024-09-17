@@ -10,9 +10,12 @@
         }
         button{
             opacity:50;
-            width:200px;
-            height:80px;
-            font-size:100%;
+            width:300px;
+            height:120px;
+            font-size:200%;
+            color:yellow;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
         }
         .buyable{
             background-color: green;
@@ -23,16 +26,32 @@
 <!--cookie click-->
 <div id="left" style="float: left; border-right-width: 20px; border-right-color: white;">
     <h1 id="showclick">Cookies per Click = 1</h1>
-    <img onclick="addcook()" style="margin: auto;" src="https://cdn.stape.io/i/64522dbc0f09c249991043.png" >
-    <h1 id="cookienum">0</h1>
-    <button id="clickbuy" onclick="addmoreclick()">More cookies per click=100</button>
+    <img onclick="addcook()" style="margin: auto; width:500; height: 500; position:absolute; left:100px; top:100px;" id="cookieimg" src="https://cdn.stape.io/i/64522dbc0f09c249991043.png" >
+    <h1 id="cookienum" style="position:absolute; left:340px; top:600px;">0</h1>
+    <button id="clickbuy" onclick="addmoreclick()" style="position:absolute; left:200px; top:700px; background-image:url(https://images.squarespace-cdn.com/content/v1/645decabcebfde1c3b5f57d1/7868d74d-c69c-4b31-a834-a370dba556d5/cookies.png); background-position: center; background-size: 200px; background-repeat: no-repeat;"">More cookies per click=100</button>
     <script>
         var cookies = 0;
         function addcook(){
             cookies += clickown;
             changeColor();
+            clicker()
             document.getElementById("cookienum").innerHTML=cookies;
         }
+        function clicker() {
+    const cookieimg = document.getElementById("cookieimg");
+    setTimeout(function() {
+        cookieimg.style.width = "400px";
+        cookieimg.style.height = "400px";
+        cookieimg.style.left= "150px"
+        cookieimg.style.top= "150px"
+    }, 200);
+    setTimeout(function() {
+        cookieimg.style.width = "500px";
+        cookieimg.style.height = "500px";
+        cookieimg.style.left= "100px"
+        cookieimg.style.top= "100px"
+    }, 500);
+    }
     //cookperclick
         var clickown = 1;
         var clickcost = 100;
@@ -56,11 +75,11 @@
 </div>
 <!--Shop-->
 <div id="right" style="float: right;">
-    <button onclick="autoclickbuy()" id="autobuy">Auto 20</button>
+    <button onclick="autoclickbuy()" style="background-image:url(https://storage.needpix.com/rsynced_images/cursor-146588_1280.png); background-position: center; background-size: 120px; background-repeat: no-repeat;" id="autobuy">Auto 20</button>
     <br>
-    <button onclick="grandmabuy()" id="grandmabuy">Grandma 50</button>
+    <button onclick="grandmabuy()" style="background-image:url(https://imageio.forbes.com/specials-images/imageserve/5e00ccaae961e1000739bfd0/John-Winsor-Open-Assembly-Open-Talent/960x0.jpg?format=jpg&width=960); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="grandmabuy">Grandma 50</button>
     <br>
-    <button onclick="bakebuy()" id="bakebuy">Bakery 400</button>
+    <button onclick="bakebuy()" style="background-image:url(https://cdn.accentuate.io/81413898321/11187274678353/IMG_414222-v1635298095540.jpg?2166x1493); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="bakebuy">Bakery 400</button>
     <script>
 //Autoclicker
         var cookies = 0;
@@ -145,7 +164,7 @@
                 bakeown +=1;
                 cookies -= bakecost;
                 changeColor()
-                bakecost += 50;
+                bakecost += 400;
                 document.getElementById("bakebuy").innerHTML = "Bakeries = " + bakecost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showbake").innerHTML = "Bakeries = " + bakeown;
