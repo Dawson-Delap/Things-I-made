@@ -147,7 +147,7 @@ def another():
     cards.pop(another1)
     win()
 
-def losewin():
+def looser():
     global lose
     lose = Tk()
     lose.config(bg="darkgreen")
@@ -156,23 +156,31 @@ def losewin():
     restart = Button(lose, text="Restart", font=("Arial", 25), bg="gold", command=lambda:  resta())
     restart.grid(row=1, column=0)
     lose.mainloop()
+def winner():
+    global lose
+    lose = Tk()
+    lose.config(bg="darkgreen")
+    w = Label(lose, text= "YOU WON :)", font=("Arial", 100), bg= "darkgreen", fg="gold")
+    w.grid(row=0, column=0)
+    restart = Button(lose, text="Restart", font=("Arial", 25), bg="gold", command=lambda:  resta())
+    restart.grid(row=1, column=0)
+    lose.mainloop()
 
 def win():
-    global loser
     global winer
     if numplay > 21:
-        loser = 1
+        looser()
     if numdeal > 21:
-        winer = 1
+        winner()
     if loser == 1:
-        losewin()
+        looser()
     if winer == 1:
-        losewin()
+        winner()
 def passwin():
     if numdeal > numplay:
-        losewin()
+        looser()
     if numplay > numdeal:
-        losewin()
+        winner()
 
 
 def windows():

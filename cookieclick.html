@@ -63,7 +63,7 @@
             if (cookies >= clickcost){
                 clickown +=1;
                 cookies -= clickcost;
-                clickcost += 100;
+                clickcost += 200;
                 document.getElementById("clickbuy").innerHTML = "More Cookies per click = " + clickcost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showclick").innerHTML = "Cookies per click = " + clickown;
@@ -76,6 +76,7 @@
 <h1 id="showauto">Autoclickers = 0</h1>
 <h1 id="showgrandma">Grandmas = 0</h1>
 <h1 id="showbake">Bakeries = 0</h1>
+<h1 id="showfarm">Farms = 0</h1>
 </div>
 <!--Shop-->
 <div id="right" style="float: right;">
@@ -83,7 +84,9 @@
     <br>
     <button class="buttons" onclick="grandmabuy()" style="background-image:url(https://imageio.forbes.com/specials-images/imageserve/5e00ccaae961e1000739bfd0/John-Winsor-Open-Assembly-Open-Talent/960x0.jpg?format=jpg&width=960); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="grandmabuy">Grandma 50</button>
     <br>
-    <button class="buttons" onclick="bakebuy()" style="background-image:url(https://cdn.accentuate.io/81413898321/11187274678353/IMG_414222-v1635298095540.jpg?2166x1493); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="bakebuy">Bakery 400</button>
+    <button class="buttons" onclick="bakebuy()" style="background-image:url(https://cdn.accentuate.io/81413898321/11187274678353/IMG_414222-v1635298095540.jpg?2166x1493); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="bakebuy">Bakery 100</button>
+    <br>
+    <button class="buttons" onclick="farmbuy()" style="background-image:url(https://static.wikia.nocookie.net/cookieclicker/images/1/1a/FarmIconTransparent.png/revision/latest/thumbnail/width/360/height/360?cb=20230716020747); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="farmbuy">Farm 200</button>
     <script>
 //Autoclicker
         var cookies = 0;
@@ -137,6 +140,13 @@
             const button = document.getElementById("bakebuy");
             button.style.backgroundColor = "grey";
         }
+        if (cookies >= farmcost){
+            const button = document.getElementById("farmbuy");
+            button.style.backgroundColor = "green";
+        } else {
+            const button = document.getElementById("farmbuy");
+            button.style.backgroundColor = "grey";
+        }
     }
         
 //Grandmas
@@ -161,14 +171,14 @@
         }
 //Bakeries
         var bakeown = 0;
-        var bakecost = 400;
+        var bakecost = 100;
         const bakeID = setInterval(bake, 250);
         function bakebuy(){
             if (cookies >= bakecost) {
                 bakeown +=1;
                 cookies -= bakecost;
                 changeColor()
-                bakecost += 400;
+                bakecost += 100;
                 document.getElementById("bakebuy").innerHTML = "Bakeries = " + bakecost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showbake").innerHTML = "Bakeries = " + bakeown;
@@ -176,6 +186,26 @@
         }
         function bake(){
             cookies += bakeown*2;
+            changeColor()
+            document.getElementById("cookienum").innerHTML = cookies;
+        }
+//
+        var farmown = 0;
+        var farmcost = 200;
+        const farmID = setInterval(farm, 250);
+        function farmbuy(){
+            if (cookies >= farmcost) {
+                farmown +=1;
+                cookies -= farmcost;
+                changeColor()
+                farmcost += 200;
+                document.getElementById("farmbuy").innerHTML = "Farms = " + farmcost;
+                document.getElementById("cookienum").innerHTML = cookies;
+                document.getElementById("showfarm").innerHTML = "Farms = " + farmown;
+            }
+        }
+        function farm(){
+            cookies += farmown*3;
             changeColor()
             document.getElementById("cookienum").innerHTML = cookies;
         }

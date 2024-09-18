@@ -75,6 +75,8 @@ def slots(Event=None):
             moneynum += 1000
         else:
             moneynum += 100000
+    if slot1["bg"] == slot2["bg"] and slot2["bg"] == slot3["bg"]:
+         moneynum += 500
     money["text"] = "Money: $", moneynum
 
 def rand():
