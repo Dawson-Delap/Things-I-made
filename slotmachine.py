@@ -78,6 +78,7 @@ def slots(Event=None):
     if slot1["bg"] == slot2["bg"] and slot2["bg"] == slot3["bg"]:
          moneynum += 500
     money["text"] = "Money: $", moneynum
+    save()
 
 def rand():
     global ran
@@ -85,7 +86,6 @@ def rand():
     opt = [emoji.emojize(':thumbs_up:'),emoji.emojize(':red_heart:'), emoji.emojize(':monkey:'), emoji.emojize(":orangutan:"), emoji.emojize(':four_leaf_clover:'), emoji.emojize(':cherries:'), emoji.emojize(":hot_dog:"), emoji.emojize(":hamburger:"), emoji.emojize(":chocolate_bar:"), 7]
     ran = random.choice(opt)
     colors = ["turquoise1", "yellow", "lawngreen", "blue", "hotpink"]
- 
     rancolor = random.choice(colors)
         
 

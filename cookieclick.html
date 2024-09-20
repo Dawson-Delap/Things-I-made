@@ -20,16 +20,19 @@
         .buyable{
             background-color: green;
         }
+        div{
+            display: inline-block;
+        }
     </style>
 </head>
 <body style="text-align: center; background-color: rgb(87, 56, 11);"></body>
 <!--cookie click-->
-<div id="left" style="float: left; border-right-width: 20px; border-right-color: white;">
-    <h1 id="showclick">Cookies per Click = 1</h1>
+<div id="left" style="float: left;">
+    <h1 id="showclick" style="position: absolute; left: 190px; top: 10px;">Cookies per Click = 1</h1>
     <img onclick="addcook()" style="margin: auto; width:500; height: 500; position:absolute; left:100px; top:100px;" id="cookieimg" src="https://cdn.stape.io/i/64522dbc0f09c249991043.png" >
     <h1 id="cookienum" style="position:absolute; left:340px; top:600px; margin:auto">0</h1>
     <button class="buttons" id="clickbuy" onclick="addmoreclick()" style="position:absolute; left:200px; top:700px; background-image:url(https://images.squarespace-cdn.com/content/v1/645decabcebfde1c3b5f57d1/7868d74d-c69c-4b31-a834-a370dba556d5/cookies.png); background-position: center; background-size: 200px; background-repeat: no-repeat;">More cookies per click=100</button>
-    <button id="secret" style="position: absolute; left:0; top:0" onclick="addcook1000()"></button>
+    <button id="secret" style="position: absolute; left:0; top:0; background-color: rgb(87, 56, 11);" onclick="addcook1000()"></button>
     <script>
         var cookies = 0;
         function addcook(){
@@ -72,11 +75,12 @@
     </script>
 </div>
 <!--Upgrade show-->
-<div id="center">
-<h1 id="showauto">Autoclickers = 0</h1>
-<h1 id="showgrandma">Grandmas = 0</h1>
-<h1 id="showbake">Bakeries = 0</h1>
-<h1 id="showfarm">Farms = 0</h1>
+<div id="center" style="align-self: center;">
+<h1 id="showauto" class="shopshow">Autoclickers = 0</h1>
+<h1 id="showgrandma" class="shopshow">Grandmas = 0</h1>
+<h1 id="showbake" class="shopshow">Bakeries = 0</h1>
+<h1 id="showfarm" class="shopshow">Farms = 0</h1>
+<h1 id="showdup" class="shopshow">Duplicators = 0</h1>
 </div>
 <!--Shop-->
 <div id="right" style="float: right;">
@@ -87,6 +91,8 @@
     <button class="buttons" onclick="bakebuy()" style="background-image:url(https://cdn.accentuate.io/81413898321/11187274678353/IMG_414222-v1635298095540.jpg?2166x1493); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="bakebuy">Bakery 100</button>
     <br>
     <button class="buttons" onclick="farmbuy()" style="background-image:url(https://static.wikia.nocookie.net/cookieclicker/images/1/1a/FarmIconTransparent.png/revision/latest/thumbnail/width/360/height/360?cb=20230716020747); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="farmbuy">Farm 200</button>
+    <br>
+    <button class="buttons" onclick="dupbuy()" style="background-image:url(https://static.wikia.nocookie.net/plantstudios/images/2/25/Precisemechanicalupgrader.png/revision/latest?cb=20211017053152); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="dupbuy">Duplicator 10000</button>
     <script>
 //Autoclicker
         var cookies = 0;
@@ -147,6 +153,13 @@
             const button = document.getElementById("farmbuy");
             button.style.backgroundColor = "grey";
         }
+        if (cookies >= dupcost){
+            const button = document.getElementById("dupbuy");
+            button.style.backgroundColor = "green";
+        } else {
+            const button = document.getElementById("dupbuy");
+            button.style.backgroundColor = "grey";
+        }
     }
         
 //Grandmas
@@ -189,7 +202,7 @@
             changeColor()
             document.getElementById("cookienum").innerHTML = cookies;
         }
-//
+// farms
         var farmown = 0;
         var farmcost = 200;
         const farmID = setInterval(farm, 250);
@@ -206,6 +219,26 @@
         }
         function farm(){
             cookies += farmown*3;
+            changeColor()
+            document.getElementById("cookienum").innerHTML = cookies;
+        }
+// duplicator
+        var dupown = 1;
+        var dupcost = 10000;
+        const dupID = setInterval(dup, 2000);
+        function dupbuy(){
+            if (cookies >= dupcost) {
+                dupown +=1;
+                cookies -= dupcost;
+                changeColor()
+                dupcost *= 2;
+                document.getElementById("dupbuy").innerHTML = "Duplicators = " + dupcost;
+                document.getElementById("cookienum").innerHTML = cookies;
+                document.getElementById("showdup").innerHTML = "Duplicators = " + dupown;
+            }
+        }
+        function dup(){
+            cookies *= dupown;
             changeColor()
             document.getElementById("cookienum").innerHTML = cookies;
         }
