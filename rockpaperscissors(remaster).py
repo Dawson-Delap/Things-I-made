@@ -107,9 +107,10 @@ def win2fun(text2):
     global stop2
     global win2
     win2 = Tk()
-    lbl = Label(win2, text=text2, font=("arial", 25))
+    win2.config(bg="darkorchid1")
+    lbl = Label(win2, text=text2, font=("arial", 25), bg="darkorchid1")
     lbl.grid(row=2, column=1)
-    restart = Button(win2, text="Restart?", font=("arial", 25), command=lambda: rst2())
+    restart = Button(win2, text="Restart?", font=("arial", 25), command=lambda: rst2(), bg="purple")
     restart.grid(row=3, column=1)
     stop2 = 1
     win2.mainloop()
@@ -121,11 +122,12 @@ def rst2():
 def mainwin():
     global window
     window = Tk()
-    which = Label(window, text="What do you want to play?", font=("arial", 25))
+    window.config(bg="darkgreen")
+    which = Label(window, text="What do you want to play?", font=("arial", 25), bg="darkgreen")
     which.grid(row=0, column=1)
-    twoplay = Button(window, text="2 Player", font=("arial", 25), command= lambda: twowork())
+    twoplay = Button(window, text="2 Player", font=("arial", 25), bg="gold", command= lambda: twowork())
     twoplay.grid(row=1, column=0)
-    botopt = Button(window, text="Bot", font=("arial", 25), command= lambda: botwork())
+    botopt = Button(window, text="Bot", font=("arial", 25), bg="gold", command= lambda: botwork())
     botopt.grid(row=1, column=2)
     window.mainloop()
 mainwin()
