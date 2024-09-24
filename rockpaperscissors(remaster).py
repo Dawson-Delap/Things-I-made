@@ -31,9 +31,9 @@ def botplay(playerchoose):
     elif botstop == 0:
         winfun("Bot Wins ;(")
 def winfun(wintext):
-    lbl = Label(botwindow, text=wintext, font=("arial", 25))
+    lbl = Label(botwindow, text=wintext, font=("arial", 25), bg="darkgreen")
     lbl.grid(row=2, column=1)
-    restart = Button(botwindow, text="Restart?", font=("arial", 25), command=lambda:botrst())
+    restart = Button(botwindow, text="Restart?", font=("arial", 25), bg="gold", command=lambda:botrst())
     restart.grid(row=3, column=1)
     botstop = 1
 def botrst():
