@@ -53,6 +53,7 @@ def twowork():
 
     onewindow = Tk()
     onewindow.config(bg="red")
+    onewindow.geometry("429x100+100+100")
     playone = Label(onewindow, text="Player 1", font=("arial", 25), bg="red")
     playone.grid(row=0, column=1)
     rock = Button(onewindow, text="Rock", height=2, width=7, font=("arial", 25), bg="red", command= lambda: play1("Rock"))
