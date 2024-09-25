@@ -6,6 +6,7 @@ def botwork():
     global botchoose
     global botwindow
     global botstop
+    botstop =0
     window.destroy()
     botchoose = random.choice(opt)
     botwindow = Tk()
@@ -31,11 +32,13 @@ def botplay(playerchoose):
     elif botstop == 0:
         winfun("Bot Wins ;(")
 def winfun(wintext):
-    lbl = Label(botwindow, text=wintext, font=("arial", 25), bg="darkgreen")
-    lbl.grid(row=2, column=1)
-    restart = Button(botwindow, text="Restart?", font=("arial", 25), bg="gold", command=lambda:botrst())
-    restart.grid(row=3, column=1)
-    botstop = 1
+    global botstop
+    if botstop == 0:
+        lbl = Label(botwindow, text=wintext, font=("arial", 25), bg="darkgreen")
+        lbl.grid(row=2, column=1)
+        restart = Button(botwindow, text="Restart?", font=("arial", 25), bg="gold", command=lambda:botrst())
+        restart.grid(row=3, column=1)
+        botstop = 1
 def botrst():
     botwindow.destroy()
     mainwin()
