@@ -7,22 +7,35 @@ import time
 # pip install pyodbc
 
 import pyodbc 
-cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};"
-                      "Server=M-24955;"
-                      "Database=slots;"
-                      "UID=persons;"
-                      "PWD=911")
+try:
+    cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};"
+                        "Server=M-24955;"
+                        "Database=slots;"
+                        "UID=persons;"
+                        "PWD=911")
+    cursor = cnxn.cursor()
+    cursor.execute('SELECT * FROM moneyown')
+    namelst = []
+    moneylst= []
+    for row in cursor:
+        namelst.append(row[0])
+        print(namelst)
+        moneylst.append(row[1])
+        print(moneylst)
+except:
+    def cont():
+        nocon.destroy()
+    nocon = Tk()
+    nocon.config(bg="darkgreen")
+    lbl = Label(nocon, text="No Sever Connection", font=("Arial", 50), bg="darkgreen", fg="gold")
+    lbl.grid(row=0, column=0)
+    but = Button(nocon, text="Continue", font=("Arial", 25), bg="gold", command=lambda: cont())
+    but.grid(row=1, column=0)
+    nocon.mainloop()
+    pass
 
 
-cursor = cnxn.cursor()
-cursor.execute('SELECT * FROM moneyown')
-namelst = []
-moneylst= []
-for row in cursor:
-    namelst.append(row[0])
-    print(namelst)
-    moneylst.append(row[1])
-    print(moneylst)
+
 
 ran = 0
 rancolor = 0
@@ -35,7 +48,7 @@ def log():
         moneynum = sqlmoney
         money["text"] = "Money: $", moneynum
     else:
-         pass
+        pass
 stopper = 1
 def save():
             savename = nameinput.get()
