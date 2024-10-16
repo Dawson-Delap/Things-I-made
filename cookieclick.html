@@ -26,6 +26,11 @@
         #cookieimg:active {
             transform: scale(0.9); 
         } 
+        #showdup{
+            color:yellow;
+            -webkit-text-stroke-width: 5px;
+            -webkit-text-stroke-color: black;
+        }
     </style>
 </head>
 <body style="text-align: center; background-color: rgb(87, 56, 11);"></body>
@@ -75,7 +80,9 @@
             }
         }
     </script>
+
 </div>
+<h1 id="showdup" style="visibility:hidden; size: 1000px; position: absolute; top: 100px; left: 550px; font-size: 200px;">You win!</h1>
 <!--Upgrade show-->
 <div id="center" style="align-self: center;">
 <h1 id="showauto" class="shopshow">Autoclickers = 0</h1>
@@ -83,7 +90,6 @@
 <h1 id="showbake" class="shopshow">Bakeries = 0</h1>
 <h1 id="showfarm" class="shopshow">Farms = 0</h1>
 <h1 id="showfact" class="shopshow">Factories = 0</h1>
-<h1 id="showdup" class="shopshow">Duplicators = 0</h1>
 </div>
 <!--Shop-->
 <div id="right" style="float: right;">
@@ -264,22 +270,27 @@
 // duplicator
         var dupown = 1;
         var dupcost = 1000000;
-        const dupID = setInterval(dup, 2000);
+        const dupID = setInterval(dup, 200);
         function dupbuy(){
             if (cookies >= dupcost) {
                 dupown +=1;
                 cookies -= dupcost;
                 changeColor()
                 dupcost *= 2000;
-                document.getElementById("dupbuy").innerHTML = "Duplicators = " + dupcost;
+                document.getElementById("dupbuy").innerHTML = "You win!";
                 document.getElementById("cookienum").innerHTML = cookies;
-                document.getElementById("showdup").innerHTML = "Duplicators = " + dupown;
+                document.getElementById("showdup").innerHTML = "You win!";
             }
         }
         function dup(){
-            cookies *= dupown;
-            changeColor()
-            document.getElementById("cookienum").innerHTML = cookies;
+            if (dupown > 1){
+                cookies *= dupown*2000000;
+                changeColor()
+                document.getElementById("cookienum").innerHTML = cookies;
+                const win = document.getElementById("showdup");
+                win.style.visibility="visible";
+            }
+            
         }
     </script>
 </div>
