@@ -44,7 +44,8 @@
     <img onclick="addcook()" style="margin-left: 100px; width:500; height: 500; margin-right:100px" id="cookieimg" src="https://cdn.stape.io/i/64522dbc0f09c249991043.png" >
     <h1 id="cookienum" style="margin:auto">0</h1>
     <button class="buttons" id="clickbuy" onclick="addmoreclick()" style="margin-top: 30px; background-image:url(https://images.squarespace-cdn.com/content/v1/645decabcebfde1c3b5f57d1/7868d74d-c69c-4b31-a834-a370dba556d5/cookies.png); background-position: center; background-size: 350px; background-repeat: no-repeat;">More cookies per click=100</button>
-    <button id="secret" style="position: absolute; left:0; top:0; background-color: rgb(87, 56, 11);" onclick="addcook1000()"></button>
+    <button id="secret" style="position: absolute; left:0; top:0; background-color: rgb(87, 56, 11); border:0" onclick="addcook1000()"></button>
+    <button id="secret" style="position: absolute; left:0; top:5px; background-color: rgb(87, 56, 11); border:0" onclick="addcook()"></button>
     <script>
         var cookies = 0;
         function addcook(){
@@ -77,7 +78,7 @@
             if (cookies >= clickcost){
                 clickown +=1;
                 cookies -= clickcost;
-                clickcost += 200;
+                clickcost += 100;
                 document.getElementById("clickbuy").innerHTML = "More Cookies per click = " + clickcost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showclick").innerHTML = "Cookies per click = " + clickown;
@@ -94,29 +95,30 @@
 <h1 id="showbake" class="shopshow">Bakeries = 0</h1>
 <h1 id="showfarm" class="shopshow">Farms = 0</h1>
 <h1 id="showfact" class="shopshow">Factories = 0</h1>
+<h1 id="showweb" class="shopshow">Websites = 0</h1>
 </div>
 <!--Shop-->
 <div id="right" style="float: right; overflow: scroll; overflow-x: hidden;">
     <button class="buttons" onclick="autoclickbuy()" style="background-image:url(https://storage.needpix.com/rsynced_images/cursor-146588_1280.png); background-position: center; background-size: 130px; background-repeat: no-repeat;" id="autobuy">
-        Auto 25</button>
+        Autoclicker = 25</button>
     <br>
     <button class="buttons" onclick="grandmabuy()" style="background-image:url(https://imageio.forbes.com/specials-images/imageserve/5e00ccaae961e1000739bfd0/John-Winsor-Open-Assembly-Open-Talent/960x0.jpg?format=jpg&width=960); background-position: center; background-size: 230px; background-repeat: no-repeat;" id="grandmabuy">
-        Grandma 50</button>
+        Grandma = 50</button>
     <br>
     <button class="buttons" onclick="bakebuy()" style="background-image:url(https://cdn.accentuate.io/81413898321/11187274678353/IMG_414222-v1635298095540.jpg?2166x1493); background-position: center; background-size: 230px; background-repeat: no-repeat;" id="bakebuy">
-        Bakery 100</button>
+        Bakery = 100</button>
     <br>
     <button class="buttons" onclick="farmbuy()" style="background-image:url(https://static.wikia.nocookie.net/cookieclicker/images/1/1a/FarmIconTransparent.png/revision/latest/thumbnail/width/360/height/360?cb=20230716020747); background-position: center; background-size: 230px; background-repeat: no-repeat;" id="farmbuy">
-        Farm 200</button>
+        Farm = 200</button>
     <br>
     <button class="buttons" onclick="factbuy()" style="background-image:url(https://thenycjournal.com/wp-content/uploads/2023/07/pexels-pixabay-459728-750x375.jpg); background-position: center; background-size: 230px; background-repeat: no-repeat;" id="factbuy">
-        Factory 400</button>
+        Factory = 400</button>
     <br>
     <button class="buttons" onclick="webbuy()" style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIrVcWPOVFB0naYh7TTW6oqd8JgPERsRcbkmg1-sM1Glyvx-LqX5kqYZMxj4B9ieD70NQ&usqp=CAU); background-position: center; background-size: 230px; background-repeat: no-repeat;" id="webbuy">
-        Website 800</button>
+        Website = 800</button>
     <br>
     <button class="buttons" onclick="dupbuy()" style="background-image:url(https://www.washingtonpost.com/news/checkpoint/wp-content/uploads/sites/33/2014/06/nuclear-bomb-cloud.jpg); background-position: center; background-size: 230px; background-repeat: no-repeat;" id="dupbuy">
-        Win 1000000000</button>
+        Win = 1000000000</button>
     <script>
 //change button colors
     function changeColor() {
@@ -271,9 +273,9 @@
                 cookies -= factcost;
                 changeColor()
                 factcost += 400;
-                document.getElementById("factbuy").innerHTML = "factory = " + factcost;
+                document.getElementById("factbuy").innerHTML = "Factory = " + factcost;
                 document.getElementById("cookienum").innerHTML = cookies;
-                document.getElementById("showfact").innerHTML = "factories = " + factown;
+                document.getElementById("showfact").innerHTML = "Factories = " + factown;
             }
         }
         function fact(){
@@ -291,9 +293,9 @@
                 cookies -= webcost;
                 changeColor()
                 webcost += 800;
-                document.getElementById("webbuy").innerHTML = "factory = " + webcost;
+                document.getElementById("webbuy").innerHTML = "Website = " + webcost;
                 document.getElementById("cookienum").innerHTML = cookies;
-                document.getElementById("showweb").innerHTML = "factories = " + webown;
+                document.getElementById("showweb").innerHTML = "Websites = " + webown;
             }
         }
         function web(){
