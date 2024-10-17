@@ -51,6 +51,7 @@ def log():
         pass
 stopper = 1
 qued = 0
+rolls = 0
 def save():
             global qued
             qued -= 1
@@ -70,8 +71,13 @@ def deletesave():
 def slots(Event=None):
     global moneynum
     global qued
+    global rolls
     moneynum -= 10
     qued +=1
+    rolls += 1
+    money["text"] = "Money: $", moneynum
+    queued["text"] = "Queued = ", qued
+    roll["text"] = "Rolls = ", rolls
     for i in range(0,10):
         rand()
         slot1["text"] = ran
@@ -93,10 +99,13 @@ def slots(Event=None):
     if slot1["text"] == slot2["text"] and slot2["text"] == slot3["text"]:
         if slot1["text"] != 7:
             moneynum += 1000
+            last["text"] = "+ 1000 image match"
         else:
             moneynum += 100000
+            last["text"] = "+ 100000 all 7s"
     if slot1["bg"] == slot2["bg"] and slot2["bg"] == slot3["bg"]:
          moneynum += 500
+         last["text"] = "+ 500 color match"
     money["text"] = "Money: $", moneynum
     queued["text"] = "Queued = ", qued
     save()
@@ -123,6 +132,9 @@ money = Label(window, text=moneynum, font =("Arial", 10))
 money.grid(row = 1, column=1)
 queued = Label(window, text="Queued = 0")
 queued.grid(row=1, column=2)
+roll = Label(window, text="Rolls = 0")
+roll.grid(row=2, column=2)
+last = Label(window, text="Last gain")
 howto = Label(window, text="Enter/Return to spin", font =("Arial", 7))
 howto.grid(row=1, column=0)
 nameinput = Entry(window)
