@@ -50,7 +50,11 @@ def log():
     else:
         pass
 stopper = 1
+qued = 0
 def save():
+            global qued
+            qued -= 1
+            queued["text"] = "Queued = ", qued
             savename = nameinput.get()
             if nameinput.get() not in namelst:
                 cursor.execute(f"INSERT INTO moneyown VALUES ('{savename}', {moneynum})")
@@ -58,13 +62,16 @@ def save():
             else:
                 cursor.execute(f"update moneyown set money = {moneynum} where name = '{savename}'")
                 cursor.commit()
+            
 def deletesave():
     savename = nameinput.get()
     cursor.execute(f"delete from moneyown where name = '{savename}'")
     cursor.commit()
 def slots(Event=None):
     global moneynum
+    global qued
     moneynum -= 10
+    qued +=1
     for i in range(0,10):
         rand()
         slot1["text"] = ran
@@ -91,6 +98,7 @@ def slots(Event=None):
     if slot1["bg"] == slot2["bg"] and slot2["bg"] == slot3["bg"]:
          moneynum += 500
     money["text"] = "Money: $", moneynum
+    queued["text"] = "Queued = ", qued
     save()
 
 def rand():
@@ -113,6 +121,8 @@ slot3.grid(row=0, column=2)
 window.bind('<Return>', slots)
 money = Label(window, text=moneynum, font =("Arial", 10))
 money.grid(row = 1, column=1)
+queued = Label(window, text="Queued = 0")
+queued.grid(row=1, column=2)
 howto = Label(window, text="Enter/Return to spin", font =("Arial", 7))
 howto.grid(row=1, column=0)
 nameinput = Entry(window)
