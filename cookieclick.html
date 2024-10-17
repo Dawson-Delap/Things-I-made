@@ -9,12 +9,11 @@
             font-family: Arial, Helvetica, sans-serif;
         }
         .buttons{
-            opacity:50;
-            width:300px;
-            height:120px;
-            font-size:150%;
+            width:350px;
+            height:150px;
+            font-size:250%;
             color:yellow;
-            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-width: 2px;
             -webkit-text-stroke-color: black;
         }
         .buyable{
@@ -22,6 +21,7 @@
         }
         div{
             display: inline-block;
+            height: 98vh;
         }
         #cookieimg:active {
             transform: scale(0.9); 
@@ -31,15 +31,19 @@
             -webkit-text-stroke-width: 5px;
             -webkit-text-stroke-color: black;
         }
+        .shopshow{
+            margin-right:200px;
+            margin-left:100px;
+        }
     </style>
 </head>
 <body style="text-align: center; background-color: rgb(87, 56, 11);"></body>
 <!--cookie click-->
-<div id="left" style="float: left;">
-    <h1 id="showclick" style="position: absolute; left: 190px; top: 10px;">Cookies per Click = 1</h1>
-    <img onclick="addcook()" style="margin: auto; width:500; height: 500; position:absolute; left:100px; top:100px;" id="cookieimg" src="https://cdn.stape.io/i/64522dbc0f09c249991043.png" >
-    <h1 id="cookienum" style="position:absolute; left:340px; top:600px; margin:auto">0</h1>
-    <button class="buttons" id="clickbuy" onclick="addmoreclick()" style="position:absolute; left:200px; top:700px; background-image:url(https://images.squarespace-cdn.com/content/v1/645decabcebfde1c3b5f57d1/7868d74d-c69c-4b31-a834-a370dba556d5/cookies.png); background-position: center; background-size: 200px; background-repeat: no-repeat;">More cookies per click=100</button>
+<div id="left" style="float: left; border-right: 10px solid black; margin-left:30px">
+    <h1 id="showclick" style="margin-top: 30px;">Cookies per Click = 1</h1>
+    <img onclick="addcook()" style="margin-left: 100px; width:500; height: 500; margin-right:100px" id="cookieimg" src="https://cdn.stape.io/i/64522dbc0f09c249991043.png" >
+    <h1 id="cookienum" style="margin:auto">0</h1>
+    <button class="buttons" id="clickbuy" onclick="addmoreclick()" style="margin-top: 30px; background-image:url(https://images.squarespace-cdn.com/content/v1/645decabcebfde1c3b5f57d1/7868d74d-c69c-4b31-a834-a370dba556d5/cookies.png); background-position: center; background-size: 350px; background-repeat: no-repeat;">More cookies per click=100</button>
     <button id="secret" style="position: absolute; left:0; top:0; background-color: rgb(87, 56, 11);" onclick="addcook1000()"></button>
     <script>
         var cookies = 0;
@@ -84,32 +88,35 @@
 </div>
 <h1 id="showdup" style="visibility:hidden; size: 1000px; position: absolute; top: 100px; left: 550px; font-size: 200px;">You win!</h1>
 <!--Upgrade show-->
-<div id="center" style="align-self: center;">
-<h1 id="showauto" class="shopshow">Autoclickers = 0</h1>
+<div id="center" style="text-align: center; border-right: 10px solid black; position:absolute; left:45vw">
+<h1 id="showauto" class="shopshow" style=>Autoclickers = 0</h1>
 <h1 id="showgrandma" class="shopshow">Grandmas = 0</h1>
 <h1 id="showbake" class="shopshow">Bakeries = 0</h1>
 <h1 id="showfarm" class="shopshow">Farms = 0</h1>
 <h1 id="showfact" class="shopshow">Factories = 0</h1>
 </div>
 <!--Shop-->
-<div id="right" style="float: right;">
-    <button class="buttons" onclick="autoclickbuy()" style="background-image:url(https://storage.needpix.com/rsynced_images/cursor-146588_1280.png); background-position: center; background-size: 120px; background-repeat: no-repeat;" id="autobuy">
-        Auto 20</button>
+<div id="right" style="float: right; overflow: scroll; overflow-x: hidden;">
+    <button class="buttons" onclick="autoclickbuy()" style="background-image:url(https://storage.needpix.com/rsynced_images/cursor-146588_1280.png); background-position: center; background-size: 130px; background-repeat: no-repeat;" id="autobuy">
+        Auto 25</button>
     <br>
-    <button class="buttons" onclick="grandmabuy()" style="background-image:url(https://imageio.forbes.com/specials-images/imageserve/5e00ccaae961e1000739bfd0/John-Winsor-Open-Assembly-Open-Talent/960x0.jpg?format=jpg&width=960); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="grandmabuy">
+    <button class="buttons" onclick="grandmabuy()" style="background-image:url(https://imageio.forbes.com/specials-images/imageserve/5e00ccaae961e1000739bfd0/John-Winsor-Open-Assembly-Open-Talent/960x0.jpg?format=jpg&width=960); background-position: center; background-size: 230px; background-repeat: no-repeat;" id="grandmabuy">
         Grandma 50</button>
     <br>
-    <button class="buttons" onclick="bakebuy()" style="background-image:url(https://cdn.accentuate.io/81413898321/11187274678353/IMG_414222-v1635298095540.jpg?2166x1493); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="bakebuy">
+    <button class="buttons" onclick="bakebuy()" style="background-image:url(https://cdn.accentuate.io/81413898321/11187274678353/IMG_414222-v1635298095540.jpg?2166x1493); background-position: center; background-size: 230px; background-repeat: no-repeat;" id="bakebuy">
         Bakery 100</button>
     <br>
-    <button class="buttons" onclick="farmbuy()" style="background-image:url(https://static.wikia.nocookie.net/cookieclicker/images/1/1a/FarmIconTransparent.png/revision/latest/thumbnail/width/360/height/360?cb=20230716020747); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="farmbuy">
+    <button class="buttons" onclick="farmbuy()" style="background-image:url(https://static.wikia.nocookie.net/cookieclicker/images/1/1a/FarmIconTransparent.png/revision/latest/thumbnail/width/360/height/360?cb=20230716020747); background-position: center; background-size: 230px; background-repeat: no-repeat;" id="farmbuy">
         Farm 200</button>
     <br>
-    <button class="buttons" onclick="factbuy()" style="background-image:url(https://thenycjournal.com/wp-content/uploads/2023/07/pexels-pixabay-459728-750x375.jpg); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="factbuy">
+    <button class="buttons" onclick="factbuy()" style="background-image:url(https://thenycjournal.com/wp-content/uploads/2023/07/pexels-pixabay-459728-750x375.jpg); background-position: center; background-size: 230px; background-repeat: no-repeat;" id="factbuy">
         Factory 400</button>
     <br>
-    <button class="buttons" onclick="dupbuy()" style="background-image:url(https://www.washingtonpost.com/news/checkpoint/wp-content/uploads/sites/33/2014/06/nuclear-bomb-cloud.jpg); background-position: center; background-size: 150px; background-repeat: no-repeat;" id="dupbuy">
-        Win 1000000</button>
+    <button class="buttons" onclick="webbuy()" style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIrVcWPOVFB0naYh7TTW6oqd8JgPERsRcbkmg1-sM1Glyvx-LqX5kqYZMxj4B9ieD70NQ&usqp=CAU); background-position: center; background-size: 230px; background-repeat: no-repeat;" id="webbuy">
+        Website 800</button>
+    <br>
+    <button class="buttons" onclick="dupbuy()" style="background-image:url(https://www.washingtonpost.com/news/checkpoint/wp-content/uploads/sites/33/2014/06/nuclear-bomb-cloud.jpg); background-position: center; background-size: 230px; background-repeat: no-repeat;" id="dupbuy">
+        Win 1000000000</button>
     <script>
 //change button colors
     function changeColor() {
@@ -155,6 +162,13 @@
             const button = document.getElementById("factbuy");
             button.style.backgroundColor = "grey";
         }
+        if (cookies >= webcost){
+            const button = document.getElementById("webbuy");
+            button.style.backgroundColor = "green";
+        } else {
+            const button = document.getElementById("webbuy");
+            button.style.backgroundColor = "grey";
+        }
         if (cookies >= dupcost){
             const button = document.getElementById("dupbuy");
             button.style.backgroundColor = "green";
@@ -167,7 +181,7 @@
 //Autoclicker
         var cookies = 0;
         var autoown = 0;
-        var autocost = 20;
+        var autocost = 25;
         const autoclickerID = setInterval(autoclick, 1000);
     
         function autoclickbuy() {
@@ -175,7 +189,7 @@
                 autoown += 1;
                 cookies -= autocost;
                 changeColor()
-                autocost += 20;
+                autocost += 25;
                 document.getElementById("autobuy").innerHTML = "Autoclicker = " + autocost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showauto").innerHTML = "Autoclickers = " + autoown;
@@ -267,9 +281,29 @@
             changeColor()
             document.getElementById("cookienum").innerHTML = cookies;
         }
+// website
+        var webown = 0;
+        var webcost = 800;
+        const webID = setInterval(web, 100);
+        function webbuy(){
+            if (cookies >= webcost) {
+                webown +=1;
+                cookies -= webcost;
+                changeColor()
+                webcost += 800;
+                document.getElementById("webbuy").innerHTML = "factory = " + webcost;
+                document.getElementById("cookienum").innerHTML = cookies;
+                document.getElementById("showweb").innerHTML = "factories = " + webown;
+            }
+        }
+        function web(){
+            cookies += webown*4;
+            changeColor()
+            document.getElementById("cookienum").innerHTML = cookies;
+        }
 // duplicator
         var dupown = 1;
-        var dupcost = 1000000;
+        var dupcost = 1000000000;
         const dupID = setInterval(dup, 200);
         function dupbuy(){
             if (cookies >= dupcost) {
