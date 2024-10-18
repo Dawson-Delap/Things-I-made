@@ -37,14 +37,31 @@ body {
 <body>
 <!--pictures-->
     <script>
-        const pics = ["cherry", "7", "thing", "picture", "placeholder", "i dont know", "I need more things", "heart"]
+        const pics = ["black", "red", "limegreen", "yellow", "cyan", "pink", "purple"]
     </script>
 <!--slotsV-->
 <div class="slot" id="slot1" style="background-color: blue; height: 58vh;">
     <h1>slot1</h1>
     <script>
+    var stop1 = 0;
+    var stopnum1 = Math.random() * 30 + 10;
+        function spin1(){
+            stop1 = 0
+            slot1loop = setInterval(spin1for, 100);
+            
+        }
+    function spin1for(){
+        stop1 += 1;
+        if (stop1 >= stopnum1){
+            clearInterval(slot1loop);
+        }
         var random1 = pics[Math.floor(Math.random() * pics.length + 1)];
-        document.getElementById("slot1").innerHTML = random1;
+        const button = document.getElementById("slot1");
+        button.style.background = random1;
+        
+        
+    }
+        
     </script>
 </div>
 
@@ -69,6 +86,7 @@ body {
 </div>
 <div class="bottom" id="bottommid" style=" height: 32vh;">
     <h1>mid</h1>
+    <button onclick=spin1() style="height: 100px; width: 100px;">click</button>
 </div>
 <div class="bottom" id="bottomright" style=" height: 32vh;">
     <h1>right</h1>
