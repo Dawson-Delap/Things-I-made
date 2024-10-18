@@ -35,18 +35,31 @@ body {
 </style>
 </head>
 <body>
-
+<!--pictures-->
+    <script>
+        const pics = ["cherry", "7", "thing", "picture", "placeholder", "i dont know", "I need more things", "heart"]
+    </script>
 <!--slotsV-->
 <div class="slot" id="slot1" style="background-color: blue; height: 58vh;">
     <h1>slot1</h1>
+    <script>
+        var random1 = pics[Math.floor(Math.random() * pics.length + 1)];
+        document.getElementById("slot1").innerHTML = random1;
+    </script>
 </div>
 
 <div class="slot" id="slot2" style="background-color: blue; height: 58vh;">
     <h1>slot2</h1>
+    <script>
+        
+    </script>
 </div>
 
 <div class="slot" id="slot3" style="background-color: blue; height: 58vh;">
     <h1>slot3</h1>
+    <script>
+        
+    </script>
 </div>
 <!--slots^-->
 
