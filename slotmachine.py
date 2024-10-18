@@ -7,6 +7,8 @@ import time
 # pip install pyodbc
 
 import pyodbc 
+namelst = []
+moneylst= []
 try:
     cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};"
                         "Server=M-24955;"
@@ -15,8 +17,6 @@ try:
                         "PWD=911")
     cursor = cnxn.cursor()
     cursor.execute('SELECT * FROM moneyown')
-    namelst = []
-    moneylst= []
     for row in cursor:
         namelst.append(row[0])
         print(namelst)
@@ -32,14 +32,8 @@ except:
     but = Button(nocon, text="Continue", font=("Arial", 25), bg="gold", command=lambda: cont())
     but.grid(row=1, column=0)
     nocon.mainloop()
+    offline = 1
     pass
-
-
-
-
-ran = 0
-rancolor = 0
-moneynum = 0
 def log():
     global moneynum
     inputname = nameinput.get()
@@ -49,13 +43,23 @@ def log():
         money["text"] = "Money: $", moneynum
     else:
         pass
+
+
+
+ran = 0
+rancolor = 0
+moneynum = 0
+
 stopper = 1
 qued = 0
 rolls = 0
 def save():
             global qued
+            global rolls
             qued -= 1
-            queued["text"] = "Queued = ", qued
+            rolls += 1
+            queued["text"] = "Queued = " + str(qued)
+            roll["text"] = "Rolls = " + str(rolls+1)
             savename = nameinput.get()
             if nameinput.get() not in namelst:
                 cursor.execute(f"INSERT INTO moneyown VALUES ('{savename}', {moneynum})")
@@ -73,11 +77,9 @@ def slots(Event=None):
     global qued
     global rolls
     moneynum -= 10
-    qued +=1
-    rolls += 1
-    money["text"] = "Money: $", moneynum
-    queued["text"] = "Queued = ", qued
-    roll["text"] = "Rolls = ", rolls
+    qued += 1
+    money["text"] = "Money: $ " + str(moneynum)
+    queued["text"] = "Queued = " + str(qued)
     for i in range(0,10):
         rand()
         slot1["text"] = ran
@@ -99,21 +101,21 @@ def slots(Event=None):
     if slot1["text"] == slot2["text"] and slot2["text"] == slot3["text"]:
         if slot1["text"] != 7:
             moneynum += 1000
-            last["text"] = "+ 1000 image match"
+            last["text"] = "+$1000 image match on roll " + str(rolls) 
         else:
             moneynum += 100000
-            last["text"] = "+ 100000 all 7s"
+            last["text"] = "+$100000 all 7s on roll " + str(rolls)
     if slot1["bg"] == slot2["bg"] and slot2["bg"] == slot3["bg"]:
          moneynum += 500
-         last["text"] = "+ 500 color match"
-    money["text"] = "Money: $", moneynum
-    queued["text"] = "Queued = ", qued
+         last["text"] = "+$500 color match on roll " + str(rolls)
+    money["text"] = "Money: $ "+ str(moneynum)
+    queued["text"] = "Queued = "+ str(qued)
     save()
 
 def rand():
     global ran
     global rancolor
-    opt = [emoji.emojize(':thumbs_up:'),emoji.emojize(':red_heart:'), emoji.emojize(':monkey:'), emoji.emojize(":orangutan:"), emoji.emojize(':four_leaf_clover:'), emoji.emojize(':cherries:'), emoji.emojize(":hot_dog:"), emoji.emojize(":hamburger:"), emoji.emojize(":chocolate_bar:"), 7]
+    opt = [emoji.emojize(':thumbs_up:'), emoji.emojize(':monkey:'), emoji.emojize(":orangutan:"), emoji.emojize(':four_leaf_clover:'), emoji.emojize(':cherries:'), emoji.emojize(":hot_dog:"), emoji.emojize(":hamburger:"), emoji.emojize(":chocolate_bar:"), 7]
     ran = random.choice(opt)
     colors = ["turquoise1", "yellow", "lawngreen", "blue", "hotpink"]
     rancolor = random.choice(colors)
@@ -121,11 +123,11 @@ def rand():
 
 window = Tk()
 window.config(bg="darkgreen")
-slot1 = Button(window, text=ran, font=("Arial", 25), height=16, width=16, bg="blue")
+slot1 = Button(window, text=ran, font=("Arial", 25), height=8, width=8, bg="blue")
 slot1.grid(row=0, column=0)
-slot2 = Button(window, text=ran, font=("Arial", 25), height=16, width=16, bg="blue")
+slot2 = Button(window, text=ran, font=("Arial", 25), height=8, width=8, bg="blue")
 slot2.grid(row=0, column=1)
-slot3 = Button(window, text=ran, font=("Arial", 25), height=16, width=16, bg="blue")
+slot3 = Button(window, text=ran, font=("Arial", 25), height=8, width=8, bg="blue")
 slot3.grid(row=0, column=2)
 window.bind('<Return>', slots)
 money = Label(window, text=moneynum, font =("Arial", 10))
@@ -135,15 +137,16 @@ queued.grid(row=1, column=2)
 roll = Label(window, text="Rolls = 0")
 roll.grid(row=2, column=2)
 last = Label(window, text="Last gain")
-last.grid(row=2, column=0)
+last.grid(row=2, column=1)
 howto = Label(window, text="Enter/Return to spin", font =("Arial", 7))
 howto.grid(row=1, column=0)
-nameinput = Entry(window)
-nameinput.grid(row=2, column=1)
-login = Button(window, text="Log in", command= lambda: log())
-login.grid(row=3, column=1)
-savebut = Button(window, text="Save", command= lambda: save())
-savebut.grid(row=4, column=1)
-deletebut = Button(window, text="Delete Save", command= lambda: deletesave())
-deletebut.grid(row=5,column=1)
+if offline == 0:
+    nameinput = Entry(window)
+    nameinput.grid(row=3, column=1)
+    login = Button(window, text="Log in", command= lambda: log())
+    login.grid(row=4, column=1)
+    savebut = Button(window, text="Save", command= lambda: save())
+    savebut.grid(row=5, column=1)
+    deletebut = Button(window, text="Delete Save", command= lambda: deletesave())
+    deletebut.grid(row=6,column=1)
 window.mainloop()

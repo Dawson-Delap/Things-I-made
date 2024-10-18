@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    #slot1{grid-area: left;}
+    #slot2{grid-area: center;}
+    #slot3{grid-area: right;}
+    #bottomleft{grid-area: bottomL;}
+    #bottommid{grid-area: bottomM;}
+    #bottomright{grid-area: bottomR;}
+body {
+    display: grid;
+    grid-template-areas:
+    'left center right'
+    'bottomL bottomM bottomR';
+    background-color: green;
+    gap: 10px;
+    padding: 10px;
+    
+}
+.slot{
+    text-align: center;
+    font-size: 5vi;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid black;
+}
+.bottom{
+    text-align: center;
+    font-size: 1vi;
+    justify-content: center;
+    border: 10px solid black;
+}
+</style>
+</head>
+<body>
+
+<!--slotsV-->
+<div class="slot" id="slot1" style="background-color: blue; height: 58vh;">
+    <h1>slot1</h1>
+</div>
+
+<div class="slot" id="slot2" style="background-color: blue; height: 58vh;">
+    <h1>slot2</h1>
+</div>
+
+<div class="slot" id="slot3" style="background-color: blue; height: 58vh;">
+    <h1>slot3</h1>
+</div>
+<!--slots^-->
+
+<!--bottom infoV-->
+<div class="bottom" id="bottomleft" style=" height: 32vh;">
+    <h1>left</h1>
+</div>
+<div class="bottom" id="bottommid" style=" height: 32vh;">
+    <h1>mid</h1>
+</div>
+<div class="bottom" id="bottomright" style=" height: 32vh;">
+    <h1>right</h1>
+</div>
+<!--bottom info^-->
+</body>
+</html>
