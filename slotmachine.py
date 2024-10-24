@@ -59,7 +59,7 @@ def save():
             qued -= 1
             rolls += 1
             queued["text"] = "Queued = " + str(qued)
-            roll["text"] = "Rolls = " + str(rolls+1)
+            roll["text"] = "Rolls = " + str(rolls)
             savename = nameinput.get()
             if nameinput.get() not in namelst:
                 cursor.execute(f"INSERT INTO moneyown VALUES ('{savename}', {moneynum})")
@@ -101,13 +101,13 @@ def slots(Event=None):
     if slot1["text"] == slot2["text"] and slot2["text"] == slot3["text"]:
         if slot1["text"] != 7:
             moneynum += 1000
-            last["text"] = "+$1000 image match on roll " + str(rolls) 
+            last["text"] = "+$1000 image match on roll " + str(rolls+1) 
         else:
             moneynum += 100000
-            last["text"] = "+$100000 all 7s on roll " + str(rolls)
+            last["text"] = "+$100000 all 7s on roll " + str(rolls+1)
     if slot1["bg"] == slot2["bg"] and slot2["bg"] == slot3["bg"]:
          moneynum += 500
-         last["text"] = "+$500 color match on roll " + str(rolls)
+         last["text"] = "+$500 color match on roll " + str(rolls+1)
     money["text"] = "Money: $ "+ str(moneynum)
     queued["text"] = "Queued = "+ str(qued)
     save()

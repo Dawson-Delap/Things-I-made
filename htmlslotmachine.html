@@ -35,17 +35,35 @@ body {
 </style>
 </head>
 <body>
-<!--pictures-->
+<!--global script-->
     <script>
-        const pics = ["black", "red", "limegreen", "yellow", "cyan", "pink", "purple"]
+        var money = 0
+        const pics = [
+        "7️⃣", 
+        "🔥", 
+        "❤️", 
+        "✅", 
+        "&#x1F354", 
+        "🌎", 
+        "🐵"]
         function spin(){
             spin1()
             spin2()
             spin3()
         }
+        function jackpots(){
+    // Check if all slots match
+    if (document.getElementById("slot1").innerHTML == document.getElementById("slot2").innerHTML && 
+        document.getElementById("slot2").innerHTML == document.getElementById("slot3").innerHTML) {
+        
+        document.getElementById("moneyshow").innerHTML = money;  // Update the money display
+    } else {
+        document.getElementById("moneyshow").innerHTML = "No Jackpot";  // Optional: message if no jackpot
+    }  
+}
     </script>
 <!--slotsV-->
-<div class="slot" id="slot1" style="background-color: blue; height: 58vh;">
+<div class="slot" id="slot1" style="height: 58vh;">
     <h1>slot1</h1>
     <script>
     var stop1 = 0;
@@ -60,9 +78,8 @@ body {
         if (stop1 >= stopnum1){
             clearInterval(slot1loop);
         }
-        var random1 = pics[Math.floor(Math.random() * pics.length + 1)];
-        const button = document.getElementById("slot1");
-        button.style.background = random1;
+        var random1 = pics[Math.floor(Math.random() * pics.length)];
+        document.getElementById("slot1").innerHTML = random1;
         
         
     }
@@ -70,7 +87,7 @@ body {
     </script>
 </div>
 
-<div class="slot" id="slot2" style="background-color: blue; height: 58vh;">
+<div class="slot" id="slot2" style="height: 58vh;">
     <h1>slot2</h1>
     <script>
         var stop2 = 0;
@@ -85,16 +102,15 @@ body {
         if (stop2 >= stopnum1){
             clearInterval(slot2loop);
         }
-        var random1 = pics[Math.floor(Math.random() * pics.length + 1)];
-        const button = document.getElementById("slot2");
-        button.style.background = random1;
+        var random1 = pics[Math.floor(Math.random() * pics.length)];
+        document.getElementById("slot2").innerHTML = random1;
         
         
     }
     </script>
 </div>
 
-<div class="slot" id="slot3" style="background-color: blue; height: 58vh;">
+<div class="slot" id="slot3" style="height: 58vh;">
     <h1>slot3</h1>
     <script>
         var stop3 = 0;
@@ -108,10 +124,10 @@ body {
         stop3 += 1;
         if (stop3 >= stopnum1){
             clearInterval(slot3loop);
+            jackpots()
         }
-        var random1 = pics[Math.floor(Math.random() * pics.length + 1)];
-        const button = document.getElementById("slot3");
-        button.style.background = random1;
+        var random1 = pics[Math.floor(Math.random() * pics.length)];
+        document.getElementById("slot3").innerHTML = random1;
     }
     </script>
 </div>
@@ -126,7 +142,7 @@ body {
     <button onclick=spin() style="height: 100px; width: 100px;">click</button>
 </div>
 <div class="bottom" id="bottomright" style=" height: 32vh;">
-    <h1>right</h1>
+    <h1 id="moneyshow">Money</h1>
 </div>
 <!--bottom info^-->
 </body>
