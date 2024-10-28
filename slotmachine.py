@@ -10,11 +10,11 @@ import pyodbc
 namelst = []
 moneylst= []
 try:
-    cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};"
-                        "Server=M-24955;"
-                        "Database=slots;"
-                        "UID=persons;"
-                        "PWD=911")
+    cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};" # change driver if it doesnt work
+                        "Server= ;" #enter server name
+                        "Database= ;" # enter database name
+                        "UID= ;" # username 
+                        "PWD= ;") # password
     cursor = cnxn.cursor()
     cursor.execute('SELECT * FROM moneyown')
     for row in cursor:
