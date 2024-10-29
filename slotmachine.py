@@ -9,12 +9,24 @@ import time
 import pyodbc 
 namelst = []
 moneylst= []
+offline = 0
 try:
-    cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};" # change driver if it doesnt work
-                        "Server= ;" #enter server name
-                        "Database= ;" # enter database name
-                        "UID= ;" # username 
-                        "PWD= ;") # password
+    #!!!!!!!!!!!!!!!!!!!!!!!have to make sql server for this to work!!!!!!!!!!!!!!!
+    cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};" # driver for microsoft sql sever (change driver if it doesnt work)
+                        "Server= ;" #not needed unless not working
+                        "Database=slots;"
+                        "UID=;" # username 
+                        "PWD=;") # password
+    #SQL query to create needed table and database
+    #||||
+    #VVVV
+    """
+    create database slots
+    use slots
+    create table moneyown(
+    name Varchar(100),
+    money int)
+    """
     cursor = cnxn.cursor()
     cursor.execute('SELECT * FROM moneyown')
     for row in cursor:
@@ -53,13 +65,14 @@ moneynum = 0
 stopper = 1
 qued = 0
 rolls = 0
-def save():
+def querollcheck():
             global qued
             global rolls
             qued -= 1
             rolls += 1
             queued["text"] = "Queued = " + str(qued)
             roll["text"] = "Rolls = " + str(rolls)
+def save():
             savename = nameinput.get()
             if nameinput.get() not in namelst:
                 cursor.execute(f"INSERT INTO moneyown VALUES ('{savename}', {moneynum})")
@@ -110,7 +123,7 @@ def slots(Event=None):
          last["text"] = "+$500 color match on roll " + str(rolls+1)
     money["text"] = "Money: $ "+ str(moneynum)
     queued["text"] = "Queued = "+ str(qued)
-    save()
+    querollcheck()
 
 def rand():
     global ran
