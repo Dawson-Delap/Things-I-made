@@ -12,6 +12,7 @@ z3 = 9
 xlst = []
 olst = []
 win = 0
+tie = 0
 stoper = 0
 def restart():
     global xo
@@ -27,6 +28,7 @@ def restart():
     global xlst
     global olst
     global win
+    global tie
     global stoper
     global winorlose
     window.destroy()
@@ -44,6 +46,7 @@ def restart():
     xlst = []
     olst = []
     win = 0
+    tie = 0
     stoper = 0
     wind()
 
@@ -62,6 +65,7 @@ def work(button, place):
     global olst
     global win
     global stoper
+    global tie
     row = button.grid_info()["row"]
     column = button.grid_info()["column"]
     button.destroy()
@@ -127,6 +131,8 @@ def work(button, place):
     if x3 in olst and y2 in olst and z1 in olst:
         xo = "O"
         win = 1
+    if len(xlst) == 5 and len(olst) == 4:
+        tie = 1 
     if win == 1:
         if stoper == 0:
             stoper = 1
@@ -138,6 +144,17 @@ def work(button, place):
             res = Button(winorlose, text="Restart?", bg=color, command= lambda: restart())
             res.grid(row=1, column=0)
             winorlose.mainloop()
+    if tie == 1:
+        if stoper == 0:
+                    stoper = 1
+                    winorlose = Tk()
+                    winorlose.config(bg="darkorchid1")
+                    lbl = Label(winorlose, text="Tie!", font=("arial", 25), bg="darkorchid1")
+                    lbl.grid(row=0, column=0)
+                    res = Button(winorlose, text="Restart?", bg=color, command= lambda: restart())
+                    res.grid(row=1, column=0)
+                    winorlose.mainloop()
+
 
 def wind():
     global window
