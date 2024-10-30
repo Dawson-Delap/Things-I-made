@@ -1,7 +1,6 @@
 from tkinter import *
 import random
 import time
-
 opt = {
         "-$1":-1,
         "$10":10,
@@ -64,7 +63,6 @@ def work():
         spot7["bg"] = colors
         window.update()
         time.sleep(.01)
-
         spot8["text"] = y
         spot8["bg"] = ycolors
         window.update()
@@ -100,4 +98,3 @@ money.grid(row=3, column=0)
 price = Label(window, text= "100,000 per spin")
 price.grid(row=3, column=2)
 window.mainloop()
-
