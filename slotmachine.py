@@ -1,62 +1,6 @@
 from tkinter import *
 import random
-import emoji
 import time
-#if there is an error, type into cmd: 
-# pip install emoji 
-# pip install pyodbc
-
-import pyodbc 
-namelst = []
-moneylst= []
-offline = 0
-try:
-    #!!!!!!!!!!!!!!!!!!!!!!!have to make sql server for this to work!!!!!!!!!!!!!!!
-    cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};" # driver for microsoft sql sever (change driver if it doesnt work)
-                        "Server= ;" #not needed unless not working
-                        "Database=slots;"
-                        "UID=;" # username 
-                        "PWD=;") # password
-    #SQL query to create needed table and database
-    #||||
-    #VVVV
-    """
-    create database slots
-    use slots
-    create table moneyown(
-    name Varchar(100),
-    money int)
-    """
-    cursor = cnxn.cursor()
-    cursor.execute('SELECT * FROM moneyown')
-    for row in cursor:
-        namelst.append(row[0])
-        print(namelst)
-        moneylst.append(row[1])
-        print(moneylst)
-except:
-    def cont():
-        nocon.destroy()
-    nocon = Tk()
-    nocon.config(bg="darkgreen")
-    lbl = Label(nocon, text="No Sever Connection", font=("Arial", 50), bg="darkgreen", fg="gold")
-    lbl.grid(row=0, column=0)
-    but = Button(nocon, text="Continue", font=("Arial", 25), bg="gold", command=lambda: cont())
-    but.grid(row=1, column=0)
-    nocon.mainloop()
-    offline = 1
-    pass
-def log():
-    global moneynum
-    inputname = nameinput.get()
-    if inputname in namelst:
-        sqlmoney = moneylst[namelst.index(inputname)]
-        moneynum = sqlmoney
-        money["text"] = "Money: $", moneynum
-    else:
-        pass
-
-
 
 ran = 0
 rancolor = 0
@@ -71,20 +15,7 @@ def querollcheck():
             qued -= 1
             rolls += 1
             queued["text"] = "Queued = " + str(qued)
-            roll["text"] = "Rolls = " + str(rolls)
-def save():
-            savename = nameinput.get()
-            if nameinput.get() not in namelst:
-                cursor.execute(f"INSERT INTO moneyown VALUES ('{savename}', {moneynum})")
-                cursor.commit()
-            else:
-                cursor.execute(f"update moneyown set money = {moneynum} where name = '{savename}'")
-                cursor.commit()
-            
-def deletesave():
-    savename = nameinput.get()
-    cursor.execute(f"delete from moneyown where name = '{savename}'")
-    cursor.commit()
+            roll["text"] = "Rolls = " + str(rolls)       
 def slots(Event=None):
     global moneynum
     global qued
@@ -114,21 +45,18 @@ def slots(Event=None):
     if slot1["text"] == slot2["text"] and slot2["text"] == slot3["text"]:
         if slot1["text"] != 7:
             moneynum += 1000
-            last["text"] = "+$1000 image match on roll " + str(rolls+1) 
+            last["text"] = "+$1000 on roll " + str(rolls+1) 
+            money["text"] = "Money: $ " + str(moneynum)
         else:
             moneynum += 100000
-            last["text"] = "+$100000 all 7s on roll " + str(rolls+1)
-    if slot1["bg"] == slot2["bg"] and slot2["bg"] == slot3["bg"]:
-         moneynum += 500
-         last["text"] = "+$500 color match on roll " + str(rolls+1)
-    money["text"] = "Money: $ "+ str(moneynum)
-    queued["text"] = "Queued = "+ str(qued)
+            last["text"] = "+$100000 on roll " + str(rolls+1)
+            money["text"] = "Money: $ " + str(moneynum)
     querollcheck()
 
 def rand():
     global ran
     global rancolor
-    opt = [emoji.emojize(':thumbs_up:'), emoji.emojize(':monkey:'), emoji.emojize(":orangutan:"), emoji.emojize(':four_leaf_clover:'), emoji.emojize(':cherries:'), emoji.emojize(":hot_dog:"), emoji.emojize(":hamburger:"), emoji.emojize(":chocolate_bar:"), 7]
+    opt = ["\N{grinning face}", "\N{pancakes}", "\N{potato}", "\N{billiards}", "\N{slot machine}", "\N{rock}", "\N{page facing up}", "\N{black scissors}", 7]
     ran = random.choice(opt)
     colors = ["turquoise1", "yellow", "lawngreen", "blue", "hotpink"]
     rancolor = random.choice(colors)
@@ -153,13 +81,4 @@ last = Label(window, text="Last gain")
 last.grid(row=2, column=1)
 howto = Label(window, text="Enter/Return to spin", font =("Arial", 7))
 howto.grid(row=1, column=0)
-if offline == 0:
-    nameinput = Entry(window)
-    nameinput.grid(row=3, column=1)
-    login = Button(window, text="Log in", command= lambda: log())
-    login.grid(row=4, column=1)
-    savebut = Button(window, text="Save", command= lambda: save())
-    savebut.grid(row=5, column=1)
-    deletebut = Button(window, text="Delete Save", command= lambda: deletesave())
-    deletebut.grid(row=6,column=1)
 window.mainloop()

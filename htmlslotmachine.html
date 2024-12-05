@@ -18,6 +18,9 @@ body {
     padding: 10px;
     
 }
+div{
+    width: 30vw;
+}
 .slot{
     text-align: center;
     font-size: 5vi;
@@ -25,6 +28,7 @@ body {
     justify-content: center;
     align-items: center;
     border: 10px solid black;
+    height: 54vh;
 }
 .bottom{
     text-align: center;
@@ -35,111 +39,83 @@ body {
 </style>
 </head>
 <body>
-<!--global script-->
     <script>
-        var money = 0
-        const pics = [
-        "7️⃣", 
-        "🔥", 
-        "❤️", 
-        "✅", 
-        "&#x1F354", 
-        "🌎", 
-        "🐵"]
-        function spin(){
-            spin1()
-            spin2()
-            spin3()
+        var inf = 0;
+        var pics = [
+            "💩",
+            "💀",
+            "👍",
+            "💅",
+            "🐁",
+            "🦖",
+            "🎄",
+            "7️⃣",
+        ]
+        function disablebut(){
+            document.getElementById("spinbut").disabled = true;
         }
-        function jackpots(){
-    // Check if all slots match
-    if (document.getElementById("slot1").innerHTML == document.getElementById("slot2").innerHTML && 
-        document.getElementById("slot2").innerHTML == document.getElementById("slot3").innerHTML) {
-        
-        document.getElementById("moneyshow").innerHTML = money;  // Update the money display
-    } else {
-        document.getElementById("moneyshow").innerHTML = "No Jackpot";  // Optional: message if no jackpot
-    }  
-}
+        function enablebut(){
+            document.getElementById("spinbut").disabled = false;
+        }
+        const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
+        const spin = async() => {
+            disablebut();
+            for (let i = 0; i < pics.length; i++){
+                const slot1 = document.getElementById("slot1");
+                slot1.innerHTML = pics[Math.floor(Math.random() * 8)];
+                await sleep(100)
+            }
+            for (let i = 0; i < pics.length; i++){
+                const slot2 = document.getElementById("slot2");
+                slot2.innerHTML = pics[Math.floor(Math.random() * 8)];
+                await sleep(100)
+            }
+            for (let i = 0; i < pics.length; i++){
+                const slot3 = document.getElementById("slot3");
+                slot3.innerHTML = pics[Math.floor(Math.random() * 8)];
+                await sleep(100)
+            }
+            if (inf == 0){
+                enablebut();
+            }else if (inf == 1){
+                spin()
+            }
+        }
+        function infinite(){
+            inf = 1;
+            document.getElementById("infinitebut").disabled = true;
+            document.getElementById("finitebut").disabled = false;
+        }
+        function finite(){
+            inf = 0;
+            document.getElementById("infinitebut").disabled = false;
+            document.getElementById("finitebut").disabled= true;
+        }
     </script>
 <!--slotsV-->
-<div class="slot" id="slot1" style="height: 58vh;">
+<div class="slot" id="slot1">
     <h1>slot1</h1>
-    <script>
-    var stop1 = 0;
-    var stopnum1 = Math.random() * 30 + 10;
-        function spin1(){
-            stop1 = 0
-            slot1loop = setInterval(spin1for, 100);
-            
-        }
-    function spin1for(){
-        stop1 += 1;
-        if (stop1 >= stopnum1){
-            clearInterval(slot1loop);
-        }
-        var random1 = pics[Math.floor(Math.random() * pics.length)];
-        document.getElementById("slot1").innerHTML = random1;
-        
-        
-    }
-        
-    </script>
 </div>
 
-<div class="slot" id="slot2" style="height: 58vh;">
+<div class="slot" id="slot2">
     <h1>slot2</h1>
-    <script>
-        var stop2 = 0;
-    var stopnum2 = Math.random() * 30 + 10;
-        function spin2(){
-            stop2 = 0
-            slot2loop = setInterval(spin2for, 100);
-            
-        }
-    function spin2for(){
-        stop2 += 1;
-        if (stop2 >= stopnum1){
-            clearInterval(slot2loop);
-        }
-        var random1 = pics[Math.floor(Math.random() * pics.length)];
-        document.getElementById("slot2").innerHTML = random1;
-        
-        
-    }
-    </script>
 </div>
 
-<div class="slot" id="slot3" style="height: 58vh;">
+<div class="slot" id="slot3" >
     <h1>slot3</h1>
-    <script>
-        var stop3 = 0;
-    var stopnum3 = Math.random() * 30 + 10;
-        function spin3(){
-            stop3 = 0
-            slot3loop = setInterval(spin3for, 100);
-            
-        }
-    function spin3for(){
-        stop3 += 1;
-        if (stop3 >= stopnum1){
-            clearInterval(slot3loop);
-            jackpots()
-        }
-        var random1 = pics[Math.floor(Math.random() * pics.length)];
-        document.getElementById("slot3").innerHTML = random1;
-    }
-    </script>
 </div>
-<!--slots^-->
+
 
 <!--bottom infoV-->
 <div class="bottom" id="bottomleft" style=" height: 32vh;">
-    <h1>left</h1>
+    <h1></h1>
+    <button onclick=infinite() style="height: 100px; width: 100px;" id="infinitebut">Infinite</button>
+    <button onclick=finite() style="height: 100px; width: 100px;" disabled="true" id="finitebut">Finite</button>
 </div>
 <div class="bottom" id="bottommid" style=" height: 32vh;">
-    <h1>mid</h1>
-    <button onclick=spin() style="height: 100px; width: 100px;">click</button>
+    <h1></h1>
+    <button onclick=spin() style="height: 100px; width: 100px;" id="spinbut">Click to spin</button>
 </div>
 <div class="bottom" id="bottomright" style=" height: 32vh;">
     <h1 id="moneyshow">Money</h1>
