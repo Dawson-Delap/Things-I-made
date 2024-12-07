@@ -45,6 +45,7 @@ div{
 </head>
 <body>
     <script>
+        var gains = "";
         var count = 0;
         var inf = 0;
         var money = 0;
@@ -99,10 +100,13 @@ div{
                 slot3.style.background = col[slot3pic];
                 await sleep(100)
             }
+            
             if(slot1.innerHTML == slot2.innerHTML && slot2.innerHTML == slot3.innerHTML){
                 money += 1000;
                 document.getElementById("moneyshow").innerHTML = "$" + money;
-                document.getElementById("lastgain").innerHTML = "+$1000 on roll " + count;
+                var gaintext = "+$1000 on roll " + count + "<br>" + gains;
+                document.getElementById("lastgain").innerHTML = gaintext;
+                gains = document.getElementById("lastgain").innerHTML;
             }else{
                 document.getElementById("moneyshow").innerHTML = "$" + money;
             }
@@ -147,10 +151,10 @@ div{
 <div class="bottom" id="bottommid" style=" height: 32vh; border: 10px outset gold;">
     <button onclick=spin() style="height: 32vh; width: 30vw; background-color: gold; font-size: 7vi;" id="spinbut">Spin</button>
 </div>
-<div class="bottom" id="bottomright" style=" height: 32vh; border: 10px outset white; background-color: rgb(212, 211, 211);">
+<div class="bottom" id="bottomright" style=" height: 32vh; border: 10px outset white; background-color: rgb(212, 211, 211); overflow: scroll;">
     <h1 id="moneyshow">$0</h1>
     <h1 id="rolls">Rolls: </h1>
-    <h1>Last gain:</h1>
+    <h1>Gains:</h1>
     <h1 id="lastgain"></h1>
 </div>
 <!--bottom info^-->
