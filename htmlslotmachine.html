@@ -78,6 +78,7 @@ div{
         const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 
         const spin = async() => {
+            money -= 10
             disablebut();
             for (let i = 0; i < pics.length; i++){
                 const slot1 = document.getElementById("slot1");

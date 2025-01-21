@@ -116,31 +116,52 @@
     </div>
     
     <script>
-        var cookies = 0;
         var clickown = 1;
+        clickown = parseInt(getCookie("clickown")) || 1;
+        document.getElementById("showclick").innerHTML = "Cookies per Click = " + clickown;
+        // Function to get a specific cookie value
+    function getCookie(name) {
+        let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        return match ? match[2] : null;
+    }
+    var cookies = parseInt(getCookie("clicks") || 0); 
+    
 
-        function addcook() {
-            cookies += clickown;
-            document.getElementById("cookienum").innerHTML = cookies;
-        }
+    function addcook() {
+        // Increment the cookie value
+        cookies += clickown;
+        // Update the cookie in the browser
+        document.cookie = "clicks=" + cookies + "; path=/";
+        // Update the displayed value
+        document.getElementById("cookienum").innerHTML = cookies;
+    }
 
-        function addcook1000() {
-            cookies *= 1000;
-            document.getElementById("cookienum").innerHTML = cookies; // Update displayed cookie count
-        }
 
-        function addmoreclick() {
-            clickown = 100; // Change cookies per click
-            document.getElementById("showclick").innerHTML = "Cookies per Click = " + clickown;
-        }
+    function addcook1000() {
+        cookies *= 1000;
+        document.cookie = "clicks=" + cookies + "; path=/";
+        document.getElementById("cookienum").innerHTML = cookies; // Update displayed cookie count
+    }
+
+    function addmoreclick() {
+        clickown = 100; // Change cookies per click
+        document.getElementById("showclick").innerHTML = "Cookies per Click = " + clickown;
+    }
+    var clickcost = parseInt(getCookie("clickcost")) || 100;
+    document.getElementById("clickbuy").innerHTML = "More Cookies per click = " + clickcost;
     //cookperclick
-        var clickown = 1;
-        var clickcost = 100;
-        function addmoreclick(){
-            if (cookies >= clickcost){
-                clickown +=1;
+        function addmoreclick() {
+            if (cookies >= clickcost) {
+                clickown += 1;
                 cookies -= clickcost;
                 clickcost += 100;
+
+                // Update cookies
+                document.cookie = "clickown=" + clickown + "; path=/";
+                document.cookie = "clickcost=" + clickcost + "; path=/";
+                document.cookie = "cookies=" + cookies + "; path=/";
+
+                // Update UI elements
                 document.getElementById("clickbuy").innerHTML = "More Cookies per click = " + clickcost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showclick").innerHTML = "Cookies per click = " + clickown;
@@ -241,9 +262,10 @@
     }
     
 //Autoclicker
-        var cookies = 0;
-        var autoown = 0;
-        var autocost = 25;
+        var autoown = parseInt(getCookie("autoown")) || 0;
+        var autocost = parseInt(getCookie("autocost")) || 25;
+        document.getElementById("autobuy").innerHTML = "Autoclicker = " + autocost;
+        document.getElementById("showauto").innerHTML = "Autoclickers = " + autoown;
         const autoclickerID = setInterval(autoclick, 1000);
     
         function autoclickbuy() {
@@ -252,6 +274,9 @@
                 cookies -= autocost;
                 changeColor()
                 autocost += 25;
+                document.cookie = "autoown=" + autoown + "; path=/";
+                document.cookie = "autocost=" + autocost + "; path=/";
+                document.cookie = "clicks=" + cookies + "; path=/";
                 document.getElementById("autobuy").innerHTML = "Autoclicker = " + autocost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showauto").innerHTML = "Autoclickers = " + autoown;
@@ -260,12 +285,15 @@
         function autoclick() {
             cookies += autoown;
             changeColor()
+            document.cookie = "clicks=" + cookies + "; path=/";
             document.getElementById("cookienum").innerHTML = cookies;
         }
     
 //Grandmas
-        var grandmaown = 0;
-        var grandmacost = 50;
+        var grandmaown = parseInt(getCookie("grandmaown")) || 0;
+        var grandmacost = parseInt(getCookie("grandmacost")) || 50;
+        document.getElementById("grandmabuy").innerHTML = "Grandma = " + grandmacost;
+        document.getElementById("showgrandma").innerHTML = "Grandmas = " + grandmaown;
         const grandmaID = setInterval(grandma, 500);
         function grandmabuy(){
             if (cookies >= grandmacost) {
@@ -273,6 +301,9 @@
                 cookies -= grandmacost;
                 changeColor()
                 grandmacost += 50;
+                document.cookie = "grandmaown=" + grandmaown + "; path=/";
+                document.cookie = "grandmacost=" + grandmacost + "; path=/";
+                document.cookie = "clicks=" + cookies + "; path=/";
                 document.getElementById("grandmabuy").innerHTML = "Grandma = " + grandmacost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showgrandma").innerHTML = "Grandmas = " + grandmaown;
@@ -281,11 +312,14 @@
         function grandma(){
             cookies += grandmaown;
             changeColor()
+            document.cookie = "clicks=" + cookies + "; path=/";
             document.getElementById("cookienum").innerHTML = cookies;
         }
 //Bakeries
-        var bakeown = 0;
-        var bakecost = 100;
+        var bakeown = parseInt(getCookie("bakeown")) || 0;
+        var bakecost = parseInt(getCookie("bakecost")) || 100;
+        document.getElementById("bakebuy").innerHTML = "Bakeries = " + bakecost;
+        document.getElementById("showbake").innerHTML = "Bakeries = " + bakeown;
         const bakeID = setInterval(bake, 250);
         function bakebuy(){
             if (cookies >= bakecost) {
@@ -293,6 +327,9 @@
                 cookies -= bakecost;
                 changeColor()
                 bakecost += 100;
+                document.cookie = "bakeown=" + bakeown + "; path=/";
+                document.cookie = "bakecost=" + bakecost + "; path=/";
+                document.cookie = "clicks=" + cookies + "; path=/";
                 document.getElementById("bakebuy").innerHTML = "Bakeries = " + bakecost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showbake").innerHTML = "Bakeries = " + bakeown;
@@ -301,11 +338,14 @@
         function bake(){
             cookies += bakeown*2;
             changeColor()
+            document.cookie = "clicks=" + cookies + "; path=/";
             document.getElementById("cookienum").innerHTML = cookies;
         }
 // farms
-        var farmown = 0;
-        var farmcost = 200;
+        var farmown = parseInt(getCookie("farmown")) || 0;
+        var farmcost = parseInt(getCookie("farmcost")) || 200;
+        document.getElementById("farmbuy").innerHTML = "Farms = " + farmcost;
+        document.getElementById("showfarm").innerHTML = "Farms = " + farmown;
         const farmID = setInterval(farm, 250);
         function farmbuy(){
             if (cookies >= farmcost) {
@@ -313,6 +353,9 @@
                 cookies -= farmcost;
                 changeColor()
                 farmcost += 200;
+                document.cookie = "farmown=" + farmown + "; path=/";
+                document.cookie = "farmcost=" + farmcost + "; path=/";
+                document.cookie = "clicks=" + cookies + "; path=/";
                 document.getElementById("farmbuy").innerHTML = "Farms = " + farmcost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showfarm").innerHTML = "Farms = " + farmown;
@@ -321,11 +364,14 @@
         function farm(){
             cookies += farmown*3;
             changeColor()
+            document.cookie = "clicks=" + cookies + "; path=/";
             document.getElementById("cookienum").innerHTML = cookies;
         }
 // Factory
-        var factown = 0;
-        var factcost = 400;
+        var factown = parseInt(getCookie("factown")) || 0;
+        var factcost = parseInt(getCookie("factcost")) || 400;
+        document.getElementById("factbuy").innerHTML = "Factory = " + factcost;
+        document.getElementById("showfact").innerHTML = "Factories = " + factown;
         const factID = setInterval(fact, 100);
         function factbuy(){
             if (cookies >= factcost) {
@@ -333,6 +379,9 @@
                 cookies -= factcost;
                 changeColor()
                 factcost += 400;
+                document.cookie = "factown=" + factown + "; path=/";
+                document.cookie = "factcost=" + factcost + "; path=/";
+                document.cookie = "clicks=" + cookies + "; path=/";
                 document.getElementById("factbuy").innerHTML = "Factory = " + factcost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showfact").innerHTML = "Factories = " + factown;
@@ -341,11 +390,14 @@
         function fact(){
             cookies += factown*3;
             changeColor()
+            document.cookie = "clicks=" + cookies + "; path=/";
             document.getElementById("cookienum").innerHTML = cookies;
         }
 // website
-        var webown = 0;
-        var webcost = 800;
+        var webown = parseInt(getCookie("webown")) || 0;
+        var webcost = parseInt(getCookie("webcost")) || 800;
+        document.getElementById("webbuy").innerHTML = "Website = " + webcost;
+        document.getElementById("showweb").innerHTML = "Websites = " + webown;
         const webID = setInterval(web, 100);
         function webbuy(){
             if (cookies >= webcost) {
@@ -353,6 +405,9 @@
                 cookies -= webcost;
                 changeColor()
                 webcost += 800;
+                document.cookie = "webown=" + webown + "; path=/";
+                document.cookie = "webcost=" + webcost + "; path=/";
+                document.cookie = "clicks=" + cookies + "; path=/";
                 document.getElementById("webbuy").innerHTML = "Website = " + webcost;
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showweb").innerHTML = "Websites = " + webown;
@@ -361,6 +416,7 @@
         function web(){
             cookies += webown*4;
             changeColor()
+            document.cookie = "clicks=" + cookies + "; path=/";
             document.getElementById("cookienum").innerHTML = cookies;
         }
 // duplicator
@@ -373,6 +429,7 @@
                 cookies -= dupcost;
                 changeColor()
                 dupcost *= 2000;
+                document.cookie = "clicks=" + cookies + "; path=/";
                 document.getElementById("dupbuy").innerHTML = "You win!";
                 document.getElementById("cookienum").innerHTML = cookies;
                 document.getElementById("showdup").innerHTML = "You win!";
@@ -382,6 +439,7 @@
             if (dupown > 1){
                 cookies *= dupown*2000000;
                 changeColor()
+                document.cookie = "clicks=" + cookies + "; path=/";
                 document.getElementById("cookienum").innerHTML = cookies;
                 const win = document.getElementById("showdup");
                 win.style.visibility="visible";
