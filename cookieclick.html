@@ -113,6 +113,7 @@
         <button class="buttons" id="clickbuy" onclick="addmoreclick()" style=" background-image: url(https://images.squarespace-cdn.com/content/v1/645decabcebfde1c3b5f57d1/7868d74d-c69c-4b31-a834-a370dba556d5/cookies.png); background-position: center; background-size: 350px; background-repeat: no-repeat;">More cookies per click=100</button>
         <button id="secret1" style="position: absolute; left: 0; top: 0; background-color: rgb(87, 56, 11); border: 0;" onclick="addcook1000()"></button>
         <button id="secret2" style="position: absolute; left: 0; top: 5px; background-color: rgb(87, 56, 11); border: 0;" onclick="addcook()"></button>
+        <button id="secret3" style="position: absolute; left: 0; top: 10px; background-color: rgb(87, 56, 11); border: 0;" onclick="clearcookies()"></button>
     </div>
     
     <script>
@@ -124,8 +125,27 @@
         let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
         return match ? match[2] : null;
     }
-    var cookies = parseInt(getCookie("clicks") || 0); 
+    var cookies = 0
+    cookies = parseInt(getCookie("clicks") || 0); 
     
+    function clearcookies(){
+        document.cookie = "cookies=" + 0 + "; path=/";
+        document.cookie = "clicks=" + 0 + "; path=/";
+        document.cookie = "clickown=" + 1 + "; path=/";
+        document.cookie = "clickcost=" + 100 + "; path=/";
+        document.cookie = "autoown=" + 0 + "; path=/";
+        document.cookie = "autocost=" + 25 + "; path=/";
+        document.cookie = "grandmaown=" + 0 + "; path=/";
+        document.cookie = "grandmacost=" + 50 + "; path=/";
+        document.cookie = "bakeown=" + 0 + "; path=/";
+        document.cookie = "bakecost=" + 100 + "; path=/";
+        document.cookie = "farmown=" + 0 + "; path=/";
+        document.cookie = "farmcost=" + 200 + "; path=/";
+        document.cookie = "factown=" + 0 + "; path=/";
+        document.cookie = "factcost=" + 400 + "; path=/";
+        document.cookie = "webown=" + 0 + "; path=/";
+        document.cookie = "webcost=" + 800 + "; path=/";
+    }
 
     function addcook() {
         // Increment the cookie value
@@ -159,7 +179,7 @@
                 // Update cookies
                 document.cookie = "clickown=" + clickown + "; path=/";
                 document.cookie = "clickcost=" + clickcost + "; path=/";
-                document.cookie = "cookies=" + cookies + "; path=/";
+                document.cookie = "clicks=" + cookies + "; path=/";
 
                 // Update UI elements
                 document.getElementById("clickbuy").innerHTML = "More Cookies per click = " + clickcost;
@@ -189,7 +209,7 @@
     <button class="buttons" onclick="bakebuy()" style="background-image:url(https://cdn.accentuate.io/81413898321/11187274678353/IMG_414222-v1635298095540.jpg?2166x1493); background-position: center; background-size: 10vw; background-repeat: no-repeat;" id="bakebuy">
         Bakery = 100</button>
     <br>
-    <button class="buttons" onclick="farmbuy()" style="background-image:url(https://static.wikia.nocookie.net/cookieclicker/images/1/1a/FarmIconTransparent.png/revision/latest/thumbnail/width/360/height/360?cb=20230716020747); background-position: center; background-size: 10vw; background-repeat: no-repeat;" id="farmbuy">
+    <button class="buttons" onclick="farmbuy()" style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK5wprhcbTu7ZD2SZdxlbKzpRSkQ2s3i3P9A&s); background-position: center; background-size: 10vw; background-repeat: no-repeat;" id="farmbuy">
         Farm = 200</button>
     <br>
     <button class="buttons" onclick="factbuy()" style="background-image:url(https://thenycjournal.com/wp-content/uploads/2023/07/pexels-pixabay-459728-750x375.jpg); background-position: center; background-size: 10vw; background-repeat: no-repeat;" id="factbuy">
