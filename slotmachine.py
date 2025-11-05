@@ -1,14 +1,30 @@
 from tkinter import *
 import random
 import time
+import json
+import os
 
 ran = 0
 rancolor = 0
 moneynum = 0
-
-stopper = 1
 qued = 0
 rolls = 0
+def save_data():
+    data = {
+        "moneynum": moneynum,
+        "rolls": rolls
+    }
+    with open("save.json", "w") as file:
+        json.dump(data, file)
+
+def load_data():
+    global moneynum, rolls, qued, money, roll
+    if os.path.exists("save.json"):
+        with open("save.json", "r") as file:
+            data = json.load(file)
+            moneynum = data.get("moneynum", 0)
+            rolls = data.get("rolls", 0) 
+
 def querollcheck(): #update the text in the window with roll numbers
     global qued
     global rolls
@@ -68,7 +84,7 @@ window = Tk() #open window
 window.title("I LOVE GAMBLING!!!")
 window.config(bg="darkgreen")
 window.geometry("600x400")
-
+load_data()
 for i in range(3):
     window.columnconfigure(i, weight=1)
 for i in range(3):
@@ -93,4 +109,10 @@ last = Label(window, text="Last gain")
 last.grid(row=2, column=1, sticky="nsew", padx=10, pady=10)
 howto = Label(window, text="Enter to spin", font =("Arial", 7))
 howto.grid(row=1, column=0, sticky="nsew", padx=10, pady=10)
+money["text"] = "Money: $ " + str(moneynum)
+roll["text"] = "Rolls = " + str(rolls)
+def on_close():
+    save_data()
+    window.destroy()
+window.protocol("WM_DELETE_WINDOW", on_close)
 window.mainloop() #keep window running
